@@ -16,6 +16,9 @@ const FormButton = (props) => {
         return (indexActiveClass = index);
       }
     });
+    if (indexActiveClass === lengthArrClasses - 1) {
+      return false;
+    }
     indexActiveClass++;
     arrClasses.forEach((item) => item.classList.remove(activeClass));
     arrClasses[indexActiveClass].classList.add(activeClass);
