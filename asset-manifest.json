@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/questionnaire-app/static/css/main.0ffc055b.css",
+    "main.js": "/questionnaire-app/static/js/main.732d8eb9.js",
+    "index.html": "/questionnaire-app/index.html",
+    "main.0ffc055b.css.map": "/questionnaire-app/static/css/main.0ffc055b.css.map",
+    "main.732d8eb9.js.map": "/questionnaire-app/static/js/main.732d8eb9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ffc055b.css",
+    "static/js/main.732d8eb9.js"
+  ]
+}
