@@ -71,6 +71,218 @@ function App() {
     placeholder: "2",
     value: "",
   });
+  const [isHormonalContraceptives, setHormonalContraceptives] = useState({
+    title: "Использовали ли вы гормональные контрацептивы?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+  const [getDaysHormonalContraceptives, setDaysHormonalContraceptives] =
+    useState({
+      title:
+        "Общая продолжительность использования гормональных контрацептивов, дней",
+      description: "",
+      placeholder: "24",
+      value: "",
+    });
+
+  const [isCcancerDiagnosis, setCcancerDiagnosis] = useState({
+    title: "Есть ли у вас онкологический диагноз?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+  const [getNameCancerDiagnosis, setNameCancerDiagnosis] = useState({
+    title: "Название диагноза",
+    description: "",
+    placeholder: "Онкогепатология",
+    value: "",
+  });
+  const [getAgeCancerDiagnosis, setAgeCancerDiagnosis] = useState({
+    title: "Возраст постановки диагноза, лет",
+    description: "",
+    placeholder: "15",
+    value: "",
+  });
+
+  const [isСhemotherapy, setСhemotherapy] = useState({
+    title: "Было ли проведено лечение с помощью химиотерапии?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [isHormoneTherapy, setHormoneTherapy] = useState({
+    title: "Было ли проведено лечение с помощью гормональной терапии?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [isRadiationTherapy, setRadiationTherapy] = useState({
+    title: "Было ли проведено лечение с помощью лучевой терапии?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+  const [isConcomitantDiagnosis, setConcomitantDiagnosis] = useState({
+    title: "Есть ли у вас сопутствующий диагноз?",
+    description: "(Прочие хронические и онкологические заболевания)",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+  const [isGeneticTesting, setGeneticTesting] = useState({
+    title: "Делали ли вы генетическое тестирование?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+  const [getGeneticTestingResult, setGeneticTestingResult] = useState({
+    title: "Какой был результат?",
+    description: "",
+    placeholder: "Не помню, но вроде все было хорошо",
+    value: "",
+  });
+
+  const [isBiopsy, setBiopsy] = useState({
+    title: "Выполнялись ли диагностические биопсии?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [getBiopsyOrganAndResult, setBiopsyOrganAndResult] = useState({
+    title: "На каком органе проводилась биопсия и какой был результат?",
+    description: "",
+    placeholder: "Печень. Результат был отрицательный",
+    value: "",
+  });
+
+  const [isBiopsyHyperplasia, setBiopsyHyperplasia] = useState({
+    title: "Выявлялась ли при биопсии атипичная гиперплазия?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [isPreventiveSurgery, setPreventiveSurgery] = useState({
+    title: "Выполнялись ли профилактические хирургические вмешательства",
+    description: "(Удаление молочных желез, яичников с трубами)",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [isColonPolyps, setColonPolyps] = useState({
+    title: "Выявлялись ли у вас полипы толстой кишки?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [getColonPolypsResult, setColonPolypsResult] = useState({
+    title: "Сколько их было обнаружено?",
+    description: "",
+    placeholder: "3",
+    value: "",
+  });
+
+  const [isRelativesWithBreastCancer, setRelativesWithBreastCancer] = useState({
+    title:
+      "Были ли у вас родственники у которых был выявлен рак молочной железы?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [getNameRelativesWithBreastCancer, setNameRelativesWithBreastCancer] =
+    useState({
+      title: "Имя родственника",
+      description: "",
+      placeholder: "Иван",
+      value: "",
+    });
+  const [
+    getDegreeRelativesWithBreastCancer,
+    setDegreeRelativesWithBreastCancer,
+  ] = useState({
+    title: "Степень родства",
+    description: "",
+    placeholder: "мать, сестра, дочь, тетя, племянница, бабушка",
+    value: "",
+  });
+
+  const [isRelativesFoM, setRelativesFoM] = useState({
+    title: "По какой линии относится вам ваш родственник?",
+    description: "",
+    buttons: ["Отцовская", "Материнская"],
+    value: "",
+  });
+
+  const [getAgeRelativesWithBreastCancer, setAgeRelativesWithBreastCancer] =
+    useState({
+      title: "Возраст постановки диагноза, лет",
+      description: "",
+      placeholder: "15",
+      value: "",
+    });
+
+  const [isTripleNegativeSubtypeCancer, setTripleNegativeSubtypeCancer] =
+    useState({
+      title: "Был ли это рак тройного негативного подтипа?",
+      description: "",
+      buttons: ["Да", "Нет"],
+      value: "",
+    });
+  const [isBilateralProcess, setBilateralProcess] = useState({
+    title: "Был ли двусторонний процесс?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+
+  const [isRelativesWithOtherCancer, setRelativesWithOtherCancer] = useState({
+    title:
+      "Были ли у вас родственники у которых были выявлены любые другие онкологические заболевания?",
+    description: "",
+    buttons: ["Да", "Нет"],
+    value: "",
+  });
+  const [getNameRelativesWithOtherCancer, setNameRelativesWithOtherCancer] =
+    useState({
+      title: "Имя родственника",
+      description: "",
+      placeholder: "Иван",
+      value: "",
+    });
+  const [getDegreeRelativesWithOtherCancer, setDegreeRelativesWithOtherCancer] =
+    useState({
+      title: "Степень родства",
+      description: "",
+      placeholder: "мать, сестра, дочь, тетя, племянница, бабушка",
+      value: "",
+    });
+
+  const [isRelativesWithOtherFoM, setRelativesWithOtherFoM] = useState({
+    title: "По какой линии относится вам ваш родственник?",
+    description: "",
+    buttons: ["Отцовская", "Материнская"],
+    value: "",
+  });
+
+  const [getRelativesDiagnosissOrOrgan, setRelativesDiagnosissOrOrgan] =
+    useState({
+      title: "Диагноз или пораженный орган",
+      description: "",
+      placeholder: "Диагноз не помню, но поражена была печень",
+      value: "",
+    });
+  const [getAgeRelativesWithOtherCancer, setAgeRelativesWithOtherCancer] =
+    useState({
+      title: "Возраст постановки диагноза, лет",
+      description: "",
+      placeholder: "15",
+      value: "",
+    });
 
   return (
     <form className="App" onSubmit={(e) => e.preventDefault()}>
@@ -89,6 +301,7 @@ function App() {
         </p>
       </div>
       <div className="section">
+        <h2>Короткая информация о себе</h2>
         <Input
           getState={fullName}
           setState={setFullName}
@@ -122,7 +335,7 @@ function App() {
         <Input
           getState={getNationality}
           setState={setNationality}
-          stateName="Nationality"
+          stateName="nationality"
         />
         <Radio getState={isJews} setState={setIsJews} stateName="isJews" />
       </div>
@@ -157,9 +370,200 @@ function App() {
               />
             </div>
           ) : null}
+          <Radio
+            getState={isHormonalContraceptives}
+            setState={setHormonalContraceptives}
+            stateName="isHormonalContraceptives"
+          />
+          {isHormonalContraceptives.value === "Да" ? (
+            <Input
+              getState={getDaysHormonalContraceptives}
+              setState={setDaysHormonalContraceptives}
+              stateName="getDaysHormonalContraceptives"
+              typeInput="number"
+            />
+          ) : null}
         </div>
       ) : null}
-      <div className="section"></div>
+      <div className="section">
+        <h2>Анамнез</h2>
+        <Radio
+          getState={isCcancerDiagnosis}
+          setState={setCcancerDiagnosis}
+          stateName="cancerDiagnosis"
+        />
+        {isCcancerDiagnosis.value === "Да" ? (
+          <div>
+            <Input
+              getState={getNameCancerDiagnosis}
+              setState={setNameCancerDiagnosis}
+              stateName="nameCancerDiagnosis"
+            />
+            <Input
+              getState={getAgeCancerDiagnosis}
+              setState={setAgeCancerDiagnosis}
+              stateName="ageCancerDiagnosis"
+              typeInput="number"
+            />
+            <Radio
+              getState={isСhemotherapy}
+              setState={setСhemotherapy}
+              stateName="isСhemotherapy"
+            />
+            <Radio
+              getState={isHormoneTherapy}
+              setState={setHormoneTherapy}
+              stateName="isHormoneTherapy"
+            />
+            <Radio
+              getState={isRadiationTherapy}
+              setState={setRadiationTherapy}
+              stateName="isRadiationTherapy"
+            />
+          </div>
+        ) : null}
+        <Radio
+          getState={isConcomitantDiagnosis}
+          setState={setConcomitantDiagnosis}
+          stateName="isConcomitantDiagnosis"
+        />
+        <Radio
+          getState={isGeneticTesting}
+          setState={setGeneticTesting}
+          stateName="isGeneticTesting"
+        />
+        {isGeneticTesting.value === "Да" ? (
+          <Input
+            getState={getGeneticTestingResult}
+            setState={setGeneticTestingResult}
+            stateName="getGeneticTestingResult"
+          />
+        ) : null}
+        <Radio getState={isBiopsy} setState={setBiopsy} stateName="isBiopsy" />
+        {isBiopsy.value === "Да" ? (
+          <div>
+            <Input
+              getState={getBiopsyOrganAndResult}
+              setState={setBiopsyOrganAndResult}
+              stateName="getBiopsyOrganAndResult"
+            />
+            <Radio
+              getState={isBiopsyHyperplasia}
+              setState={setBiopsyHyperplasia}
+              stateName="isBiopsyHyperplasia"
+            />
+          </div>
+        ) : null}
+        <Radio
+          getState={isPreventiveSurgery}
+          setState={setPreventiveSurgery}
+          stateName="isPreventiveSurgery"
+        />
+        <Radio
+          getState={isColonPolyps}
+          setState={setColonPolyps}
+          stateName="isColonPolyps"
+        />
+        {isColonPolyps.value === "Да" ? (
+          <Input
+            getState={getColonPolypsResult}
+            setState={setColonPolypsResult}
+            stateName="getColonPolypsResult"
+            typeInput="number"
+          />
+        ) : null}
+      </div>
+      <div className="section">
+        <h2>Семейный анамнез по раку молочной железы</h2>
+        <p>
+          Отметьте имя каждого человека в вашей семье, у которого был выявлен
+          рак молочной железы. Если их было несколько, то в конце опроса можно
+          будет добавить другого члена семьи
+        </p>
+        <Radio
+          getState={isRelativesWithBreastCancer}
+          setState={setRelativesWithBreastCancer}
+          stateName="isRelativesWithBreastCancer"
+        />
+        {isRelativesWithBreastCancer.value === "Да" ? (
+          <div>
+            <Input
+              getState={getNameRelativesWithBreastCancer}
+              setState={setNameRelativesWithBreastCancer}
+              stateName="getNameRelativesWithBreastCancer"
+            />
+            <Input
+              getState={getDegreeRelativesWithBreastCancer}
+              setState={setDegreeRelativesWithBreastCancer}
+              stateName="getDegreeRelativesWithBreastCancer"
+            />
+            <Radio
+              getState={isRelativesFoM}
+              setState={setRelativesFoM}
+              stateName="isRelativesFoM"
+            />
+            <Input
+              getState={getAgeRelativesWithBreastCancer}
+              setState={setAgeRelativesWithBreastCancer}
+              stateName="getAgeRelativesWithBreastCancer"
+              typeInput="number"
+            />
+            <Radio
+              getState={isTripleNegativeSubtypeCancer}
+              setState={setTripleNegativeSubtypeCancer}
+              stateName="isTripleNegativeSubtypeCancer"
+            />
+            <Radio
+              getState={isBilateralProcess}
+              setState={setBilateralProcess}
+              stateName="isBilateralProcess"
+            />
+          </div>
+        ) : null}
+      </div>
+      <div className="section">
+        <h2>Семейный анамнез по другим онкологическим заболеваниям</h2>
+        <p>
+          Отметьте имя каждого человека в вашей семье, у которого было выявлено
+          любое онкологическое заболевание (за исключением рака молочной
+          железы).
+        </p>
+        <Radio
+          getState={isRelativesWithOtherCancer}
+          setState={setRelativesWithOtherCancer}
+          stateName="isRelativesWithOtherCancer"
+        />
+        {isRelativesWithOtherCancer.value === "Да" ? (
+          <div>
+            <Input
+              getState={getNameRelativesWithOtherCancer}
+              setState={setNameRelativesWithOtherCancer}
+              stateName="getNameRelativesWithOtherCancer"
+            />
+            <Input
+              getState={getDegreeRelativesWithOtherCancer}
+              setState={setDegreeRelativesWithOtherCancer}
+              stateName="getDegreeRelativesWithOtherCancer"
+            />
+            <Radio
+              getState={isRelativesWithOtherFoM}
+              setState={setRelativesWithOtherFoM}
+              stateName="isRelativesWithOtherFoM"
+            />
+            <Input
+              getState={getRelativesDiagnosissOrOrgan}
+              setState={setRelativesDiagnosissOrOrgan}
+              stateName="getRelativesDiagnosissOrOrgan"
+            />
+            <Input
+              getState={getAgeRelativesWithOtherCancer}
+              setState={setAgeRelativesWithOtherCancer}
+              stateName="getAgeRelativesWithOtherCancer"
+              typeInput="number"
+            />
+          </div>
+        ) : null}
+      </div>
       <FormButton
         searchClass="section"
         activeClass="activeSection"
