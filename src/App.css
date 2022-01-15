@@ -6,10 +6,20 @@
 .App {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0;
+  padding: 30px 0;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   height: 100%;
   text-align: center;
   background-color: #0179cf;
+  transition: all 0.5s ease-in;
+}
+
+.section {
+  display: none;
+  transition: all 0.5s ease-in;
+}
+
+.activeSection {
+  display: block !important;
 }

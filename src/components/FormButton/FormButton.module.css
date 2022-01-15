@@ -1,0 +1,19 @@
+.buttonStyle {
+  width: 360px;
+  height: 60px;
+  background: #00beff;
+  border-radius: 100px;
+  border: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 35px;
+  text-align: center;
+  color: #ffffff;
+  transition: all 0.3s ease-in;
+  margin: 15px auto;
+}
+
+.buttonStyle:hover {
+  cursor: pointer;
+}

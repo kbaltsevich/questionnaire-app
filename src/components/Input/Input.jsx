@@ -2,16 +2,16 @@ import React from "react";
 import style from "./Input.module.css";
 
 const Input = (props) => {
-  const { getState, setState, stateName } = props;
+  const { getState, setState, stateName, typeInput } = props;
   return (
-    <div>
+    <div className={style.container}>
       <span className={style.title}>{getState.title}</span>
       {getState.description ? (
         <p className={style.description}>{getState.description}</p>
       ) : null}
       <input
         className={style.forInput}
-        type="text"
+        type={typeInput ? typeInput : "text"}
         name={stateName}
         id={stateName}
         placeholder={getState.placeholder}
