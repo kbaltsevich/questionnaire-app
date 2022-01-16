@@ -1,0 +1,23 @@
+.addButton {
+  opacity: 0.9;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 100px;
+  width: 367px;
+  height: 60px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 35px;
+  text-align: center;
+  color: #ffffff;
+  transition: all 0.3s ease-in;
+  background-color: #0179cf;
+  margin: 15px auto;
+}
+
+.addButton:hover {
+  background: #00beff;
+  border: 1px solid #00beff;
+  cursor: pointer;
+}

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import FormButton from "./components/FormButton/FormButton";
 import Input from "./components/Input/Input";
 import Radio from "./components/Radio/Radio";
+import RelativesWithBreastCancer from "./components/RelativesWithBreastCancer/RelativesWithBreastCancer";
+import AddButton from "./components/addButton/AddButton";
 function App() {
   const [gender, setGender] = useState({
     title: "Ваш пол",
@@ -186,60 +188,6 @@ function App() {
     value: "",
   });
 
-  const [isRelativesWithBreastCancer, setRelativesWithBreastCancer] = useState({
-    title:
-      "Были ли у вас родственники у которых был выявлен рак молочной железы?",
-    description: "",
-    buttons: ["Да", "Нет"],
-    value: "",
-  });
-
-  const [getNameRelativesWithBreastCancer, setNameRelativesWithBreastCancer] =
-    useState({
-      title: "Имя родственника",
-      description: "",
-      placeholder: "Иван",
-      value: "",
-    });
-  const [
-    getDegreeRelativesWithBreastCancer,
-    setDegreeRelativesWithBreastCancer,
-  ] = useState({
-    title: "Степень родства",
-    description: "",
-    placeholder: "мать, сестра, дочь, тетя, племянница, бабушка",
-    value: "",
-  });
-
-  const [isRelativesFoM, setRelativesFoM] = useState({
-    title: "По какой линии относится вам ваш родственник?",
-    description: "",
-    buttons: ["Отцовская", "Материнская"],
-    value: "",
-  });
-
-  const [getAgeRelativesWithBreastCancer, setAgeRelativesWithBreastCancer] =
-    useState({
-      title: "Возраст постановки диагноза, лет",
-      description: "",
-      placeholder: "15",
-      value: "",
-    });
-
-  const [isTripleNegativeSubtypeCancer, setTripleNegativeSubtypeCancer] =
-    useState({
-      title: "Был ли это рак тройного негативного подтипа?",
-      description: "",
-      buttons: ["Да", "Нет"],
-      value: "",
-    });
-  const [isBilateralProcess, setBilateralProcess] = useState({
-    title: "Был ли двусторонний процесс?",
-    description: "",
-    buttons: ["Да", "Нет"],
-    value: "",
-  });
-
   const [isRelativesWithOtherCancer, setRelativesWithOtherCancer] = useState({
     title:
       "Были ли у вас родственники у которых были выявлены любые другие онкологические заболевания?",
@@ -283,6 +231,25 @@ function App() {
       placeholder: "15",
       value: "",
     });
+
+  const [isRelativesWithBreastCancer, setIsRelativesWithBreastCancer] =
+    useState({
+      title:
+        "Были ли у вас родственники у которых был выявлен рак молочной железы?",
+      description: "",
+      buttons: ["Да", "Нет"],
+      value: "",
+    });
+
+  const [getRelativesWithBreastCancer, setRelativesWithBreastCancer] = useState(
+    [
+      {
+        id: new Date().getTime(),
+      },
+    ]
+  );
+
+  console.log(getRelativesWithBreastCancer);
 
   return (
     <form className="App" onSubmit={(e) => e.preventDefault()}>
@@ -482,41 +449,39 @@ function App() {
         </p>
         <Radio
           getState={isRelativesWithBreastCancer}
-          setState={setRelativesWithBreastCancer}
+          setState={setIsRelativesWithBreastCancer}
           stateName="isRelativesWithBreastCancer"
         />
         {isRelativesWithBreastCancer.value === "Да" ? (
           <div>
-            <Input
-              getState={getNameRelativesWithBreastCancer}
-              setState={setNameRelativesWithBreastCancer}
-              stateName="getNameRelativesWithBreastCancer"
-            />
-            <Input
-              getState={getDegreeRelativesWithBreastCancer}
-              setState={setDegreeRelativesWithBreastCancer}
-              stateName="getDegreeRelativesWithBreastCancer"
-            />
-            <Radio
-              getState={isRelativesFoM}
-              setState={setRelativesFoM}
-              stateName="isRelativesFoM"
-            />
-            <Input
-              getState={getAgeRelativesWithBreastCancer}
-              setState={setAgeRelativesWithBreastCancer}
-              stateName="getAgeRelativesWithBreastCancer"
-              typeInput="number"
-            />
-            <Radio
-              getState={isTripleNegativeSubtypeCancer}
-              setState={setTripleNegativeSubtypeCancer}
-              stateName="isTripleNegativeSubtypeCancer"
-            />
-            <Radio
-              getState={isBilateralProcess}
-              setState={setBilateralProcess}
-              stateName="isBilateralProcess"
+            {getRelativesWithBreastCancer.map((item) => {
+              return (
+                <RelativesWithBreastCancer
+                  key={item.id}
+                  getState={getRelativesWithBreastCancer}
+                  setStete={(vaule) =>
+                    setRelativesWithBreastCancer(
+                      ...getRelativesWithBreastCancer,
+                      {
+                        id: item.id,
+                        [vaule]: vaule.value,
+                      }
+                    )
+                  }
+                />
+              );
+            })}
+            <AddButton
+              addValue={{
+                id: new Date().getTime(),
+              }}
+              setVauelState={(item) =>
+                setRelativesWithBreastCancer([
+                  ...getRelativesWithBreastCancer,
+                  item,
+                ])
+              }
+              titleButton="Добавить другого члена семьи"
             />
           </div>
         ) : null}
