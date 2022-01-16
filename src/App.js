@@ -4,6 +4,7 @@ import FormButton from "./components/FormButton/FormButton";
 import Input from "./components/Input/Input";
 import Radio from "./components/Radio/Radio";
 import RelativesWithBreastCancer from "./components/RelativesWithBreastCancer/RelativesWithBreastCancer";
+import RelativesWithOtherCancer from "./components/RelativesWithOtherCancer/RelativesWithOtherCancer";
 import AddButton from "./components/addButton/AddButton";
 function App() {
   const [gender, setGender] = useState({
@@ -188,49 +189,19 @@ function App() {
     value: "",
   });
 
-  const [isRelativesWithOtherCancer, setRelativesWithOtherCancer] = useState({
+  const [isRelativesWithOtherCancer, setIsRelativesWithOtherCancer] = useState({
     title:
       "Были ли у вас родственники у которых были выявлены любые другие онкологические заболевания?",
     description: "",
     buttons: ["Да", "Нет"],
     value: "",
   });
-  const [getNameRelativesWithOtherCancer, setNameRelativesWithOtherCancer] =
-    useState({
-      title: "Имя родственника",
-      description: "",
-      placeholder: "Иван",
-      value: "",
-    });
-  const [getDegreeRelativesWithOtherCancer, setDegreeRelativesWithOtherCancer] =
-    useState({
-      title: "Степень родства",
-      description: "",
-      placeholder: "мать, сестра, дочь, тетя, племянница, бабушка",
-      value: "",
-    });
 
-  const [isRelativesWithOtherFoM, setRelativesWithOtherFoM] = useState({
-    title: "По какой линии относится вам ваш родственник?",
-    description: "",
-    buttons: ["Отцовская", "Материнская"],
-    value: "",
-  });
-
-  const [getRelativesDiagnosissOrOrgan, setRelativesDiagnosissOrOrgan] =
-    useState({
-      title: "Диагноз или пораженный орган",
-      description: "",
-      placeholder: "Диагноз не помню, но поражена была печень",
-      value: "",
-    });
-  const [getAgeRelativesWithOtherCancer, setAgeRelativesWithOtherCancer] =
-    useState({
-      title: "Возраст постановки диагноза, лет",
-      description: "",
-      placeholder: "15",
-      value: "",
-    });
+  const [getRelativesWithOtherCancer, setRelativesWithOtherCancer] = useState([
+    {
+      id: new Date().getTime(),
+    },
+  ]);
 
   const [isRelativesWithBreastCancer, setIsRelativesWithBreastCancer] =
     useState({
@@ -250,6 +221,7 @@ function App() {
   );
 
   console.log(getRelativesWithBreastCancer);
+  console.log(getRelativesWithOtherCancer);
 
   return (
     <form className="App" onSubmit={(e) => e.preventDefault()}>
@@ -493,36 +465,37 @@ function App() {
         </p>
         <Radio
           getState={isRelativesWithOtherCancer}
-          setState={setRelativesWithOtherCancer}
+          setState={setIsRelativesWithOtherCancer}
           stateName="isRelativesWithOtherCancer"
         />
         {isRelativesWithOtherCancer.value === "Да" ? (
           <div>
-            <Input
-              getState={getNameRelativesWithOtherCancer}
-              setState={setNameRelativesWithOtherCancer}
-              stateName="getNameRelativesWithOtherCancer"
-            />
-            <Input
-              getState={getDegreeRelativesWithOtherCancer}
-              setState={setDegreeRelativesWithOtherCancer}
-              stateName="getDegreeRelativesWithOtherCancer"
-            />
-            <Radio
-              getState={isRelativesWithOtherFoM}
-              setState={setRelativesWithOtherFoM}
-              stateName="isRelativesWithOtherFoM"
-            />
-            <Input
-              getState={getRelativesDiagnosissOrOrgan}
-              setState={setRelativesDiagnosissOrOrgan}
-              stateName="getRelativesDiagnosissOrOrgan"
-            />
-            <Input
-              getState={getAgeRelativesWithOtherCancer}
-              setState={setAgeRelativesWithOtherCancer}
-              stateName="getAgeRelativesWithOtherCancer"
-              typeInput="number"
+            {getRelativesWithOtherCancer.map((item) => {
+              return (
+                <RelativesWithOtherCancer
+                  key={item.id}
+                  getState={item}
+                  setState={(value) =>
+                    setRelativesWithOtherCancer(
+                      getRelativesWithOtherCancer.map((item) =>
+                        item.id === value.id ? value : item
+                      )
+                    )
+                  }
+                />
+              );
+            })}
+            <AddButton
+              addValue={{
+                id: new Date().getTime(),
+              }}
+              setVauelState={(item) =>
+                setRelativesWithOtherCancer([
+                  ...getRelativesWithOtherCancer,
+                  item,
+                ])
+              }
+              titleButton="Добавить другого члена семьи"
             />
           </div>
         ) : null}
