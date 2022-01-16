@@ -3,6 +3,7 @@ import Radio from "../Radio/Radio";
 import Input from "../Input/Input";
 
 const RelativesWithBreastCancer = (props) => {
+  const { getState, setState } = props;
   const [getNameRelativesWithBreastCancer, setNameRelativesWithBreastCancer] =
     useState({
       title: "Имя родственника",
@@ -52,33 +53,69 @@ const RelativesWithBreastCancer = (props) => {
     <div>
       <Input
         getState={getNameRelativesWithBreastCancer}
-        setState={setNameRelativesWithBreastCancer}
+        setState={(item) => {
+          setNameRelativesWithBreastCancer(item);
+          return setState({
+            ...getState,
+            getNameRelativesWithBreastCancer: item,
+          });
+        }}
         stateName="getNameRelativesWithBreastCancer"
       />
       <Input
         getState={getDegreeRelativesWithBreastCancer}
-        setState={setDegreeRelativesWithBreastCancer}
+        setState={(item) => {
+          setDegreeRelativesWithBreastCancer(item);
+          return setState({
+            ...getState,
+            getDegreeRelativesWithBreastCancer: item,
+          });
+        }}
         stateName="getDegreeRelativesWithBreastCancer"
       />
       <Radio
         getState={isRelativesFoM}
-        setState={setRelativesFoM}
+        setState={(item) => {
+          setRelativesFoM(item);
+          return setState({
+            ...getState,
+            isRelativesFoM: item,
+          });
+        }}
         stateName="isRelativesFoM"
       />
       <Input
         getState={getAgeRelativesWithBreastCancer}
-        setState={setAgeRelativesWithBreastCancer}
+        setState={(item) => {
+          setAgeRelativesWithBreastCancer(item);
+          return setState({
+            ...getState,
+            getAgeRelativesWithBreastCancer: item,
+          });
+        }}
         stateName="getAgeRelativesWithBreastCancer"
         typeInput="number"
       />
       <Radio
         getState={isTripleNegativeSubtypeCancer}
-        setState={setTripleNegativeSubtypeCancer}
+        setState={(item) => {
+          setTripleNegativeSubtypeCancer(item);
+          return setState({
+            ...getState,
+            isTripleNegativeSubtypeCancer: item,
+          });
+        }}
         stateName="isTripleNegativeSubtypeCancer"
       />
       <Radio
         getState={isBilateralProcess}
-        setState={setBilateralProcess}
+        setState={(item) => {
+          setBilateralProcess(item);
+          return setState({
+            ...getState,
+            isBilateralProcess: item,
+          });
+        }}
         stateName="isBilateralProcess"
       />
     </div>

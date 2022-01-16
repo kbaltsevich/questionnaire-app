@@ -458,14 +458,12 @@ function App() {
               return (
                 <RelativesWithBreastCancer
                   key={item.id}
-                  getState={getRelativesWithBreastCancer}
-                  setStete={(vaule) =>
+                  getState={item}
+                  setState={(value) =>
                     setRelativesWithBreastCancer(
-                      ...getRelativesWithBreastCancer,
-                      {
-                        id: item.id,
-                        [vaule]: vaule.value,
-                      }
+                      getRelativesWithBreastCancer.map((item) =>
+                        item.id === value.id ? value : item
+                      )
                     )
                   }
                 />
