@@ -6,7 +6,7 @@ const RelativesWithBreastCancer = (props) => {
   const { getState, setState } = props;
   const [getNameRelativesWithBreastCancer, setNameRelativesWithBreastCancer] =
     useState({
-      title: "Имя родственника",
+      title: "Имя родственника ",
       description: "",
       placeholder: "Иван",
       value: "",
@@ -15,14 +15,14 @@ const RelativesWithBreastCancer = (props) => {
     getDegreeRelativesWithBreastCancer,
     setDegreeRelativesWithBreastCancer,
   ] = useState({
-    title: "Степень родства",
+    title: "Степень родства ",
     description: "",
     placeholder: "мать, сестра, дочь, тетя, племянница, бабушка",
     value: "",
   });
 
   const [isRelativesFoM, setRelativesFoM] = useState({
-    title: "По какой линии относится вам ваш родственник?",
+    title: "По какой линии относится вам ваш родственник? ",
     description: "",
     buttons: ["Отцовская", "Материнская"],
     value: "",
@@ -30,7 +30,7 @@ const RelativesWithBreastCancer = (props) => {
 
   const [getAgeRelativesWithBreastCancer, setAgeRelativesWithBreastCancer] =
     useState({
-      title: "Возраст постановки диагноза, лет",
+      title: "Возраст постановки диагноза, лет ",
       description: "",
       placeholder: "15",
       value: "",
@@ -38,19 +38,19 @@ const RelativesWithBreastCancer = (props) => {
 
   const [isTripleNegativeSubtypeCancer, setTripleNegativeSubtypeCancer] =
     useState({
-      title: "Был ли это рак тройного негативного подтипа?",
+      title: "Был ли это рак тройного негативного подтипа? ",
       description: "",
       buttons: ["Да", "Нет"],
       value: "",
     });
   const [isBilateralProcess, setBilateralProcess] = useState({
-    title: "Был ли двусторонний процесс?",
+    title: "Был ли двусторонний процесс? ",
     description: "",
     buttons: ["Да", "Нет"],
     value: "",
   });
   return (
-    <div>
+    <div className="withRelatives">
       <Input
         getState={getNameRelativesWithBreastCancer}
         setState={(item) => {
@@ -60,7 +60,7 @@ const RelativesWithBreastCancer = (props) => {
             getNameRelativesWithBreastCancer: item,
           });
         }}
-        stateName="getNameRelativesWithBreastCancer"
+        stateName={getNameRelativesWithBreastCancer.title}
       />
       <Input
         getState={getDegreeRelativesWithBreastCancer}
@@ -71,7 +71,7 @@ const RelativesWithBreastCancer = (props) => {
             getDegreeRelativesWithBreastCancer: item,
           });
         }}
-        stateName="getDegreeRelativesWithBreastCancer"
+        stateName={getDegreeRelativesWithBreastCancer.title}
       />
       <Radio
         getState={isRelativesFoM}
@@ -82,7 +82,7 @@ const RelativesWithBreastCancer = (props) => {
             isRelativesFoM: item,
           });
         }}
-        stateName="isRelativesFoM"
+        stateName={isRelativesFoM.title}
       />
       <Input
         getState={getAgeRelativesWithBreastCancer}
@@ -93,7 +93,7 @@ const RelativesWithBreastCancer = (props) => {
             getAgeRelativesWithBreastCancer: item,
           });
         }}
-        stateName="getAgeRelativesWithBreastCancer"
+        stateName={getAgeRelativesWithBreastCancer.title}
         typeInput="number"
       />
       <Radio
@@ -105,7 +105,7 @@ const RelativesWithBreastCancer = (props) => {
             isTripleNegativeSubtypeCancer: item,
           });
         }}
-        stateName="isTripleNegativeSubtypeCancer"
+        stateName={isTripleNegativeSubtypeCancer.title}
       />
       <Radio
         getState={isBilateralProcess}
@@ -116,7 +116,7 @@ const RelativesWithBreastCancer = (props) => {
             isBilateralProcess: item,
           });
         }}
-        stateName="isBilateralProcess"
+        stateName={isBilateralProcess.title}
       />
     </div>
   );

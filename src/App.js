@@ -40,7 +40,7 @@ function App() {
   const [getHeight, setHeight] = useState({
     title: "Ваш рост, см",
     description: "",
-    placeholder: "69",
+    placeholder: "169",
     value: "",
   });
   const [getNationality, setNationality] = useState({
@@ -220,9 +220,6 @@ function App() {
     ]
   );
 
-  console.log(getRelativesWithBreastCancer);
-  console.log(getRelativesWithOtherCancer);
-
   return (
     <form className="App" onSubmit={(e) => e.preventDefault()}>
       <div className="section activeSection">
@@ -244,39 +241,41 @@ function App() {
         <Input
           getState={fullName}
           setState={setFullName}
-          stateName="fullName"
+          stateName={fullName.title}
         />
-        <Radio getState={gender} setState={setGender} stateName="gender" />
+        <Radio
+          getState={gender}
+          setState={setGender}
+          stateName={gender.title}
+        />
         <Input
           getState={dataBirthday}
           setState={setDataBirthday}
-          stateName="dataBirthday"
+          stateName={dataBirthday.title}
           typeInput="date"
         />
         <Input
           getState={getWeight}
           setState={setWeight}
-          stateName="weight"
-          typeInput="number"
-        />
-        <Input
-          getState={getWeight}
-          setState={setWeight}
-          stateName="weight"
+          stateName={getWeight.title}
           typeInput="number"
         />
         <Input
           getState={getHeight}
           setState={setHeight}
-          stateName="height"
+          stateName={getHeight.title}
           typeInput="number"
         />
         <Input
           getState={getNationality}
           setState={setNationality}
-          stateName="nationality"
+          stateName={getNationality.title}
         />
-        <Radio getState={isJews} setState={setIsJews} stateName="isJews" />
+        <Radio
+          getState={isJews}
+          setState={setIsJews}
+          stateName={isJews.title}
+        />
       </div>
       {gender.value === "Женский" ? (
         <div className="section">
@@ -284,13 +283,13 @@ function App() {
           <Input
             getState={getAgeStartMenstruation}
             setState={setAgeStartMenstruation}
-            stateName="ageStartMenstruation"
+            stateName={getAgeStartMenstruation.title}
             typeInput="number"
           />
           <Input
             getState={getNumberPregants}
             setState={setNumberPregants}
-            stateName="numberPregants"
+            stateName={getNumberPregants.title}
             typeInput="number"
           />
           {getNumberPregants.value !== "" && +getNumberPregants.value !== 0 ? (
@@ -298,13 +297,13 @@ function App() {
               <Input
                 getState={getAgeFirstchildbirth}
                 setState={setAgeFirstchildbirth}
-                stateName="ageFirstchildbirth"
+                stateName={getAgeFirstchildbirth.title}
                 typeInput="number"
               />
               <Input
                 getState={getLactation}
                 setState={setLactation}
-                stateName="lactation"
+                stateName={getLactation.title}
                 typeInput="number"
               />
             </div>
@@ -312,13 +311,13 @@ function App() {
           <Radio
             getState={isHormonalContraceptives}
             setState={setHormonalContraceptives}
-            stateName="isHormonalContraceptives"
+            stateName={isHormonalContraceptives.title}
           />
           {isHormonalContraceptives.value === "Да" ? (
             <Input
               getState={getDaysHormonalContraceptives}
               setState={setDaysHormonalContraceptives}
-              stateName="getDaysHormonalContraceptives"
+              stateName={getDaysHormonalContraceptives.title}
               typeInput="number"
             />
           ) : null}
@@ -329,85 +328,89 @@ function App() {
         <Radio
           getState={isCcancerDiagnosis}
           setState={setCcancerDiagnosis}
-          stateName="cancerDiagnosis"
+          stateName={isCcancerDiagnosis.title}
         />
         {isCcancerDiagnosis.value === "Да" ? (
           <div>
             <Input
               getState={getNameCancerDiagnosis}
               setState={setNameCancerDiagnosis}
-              stateName="nameCancerDiagnosis"
+              stateName={getNameCancerDiagnosis.title}
             />
             <Input
               getState={getAgeCancerDiagnosis}
               setState={setAgeCancerDiagnosis}
-              stateName="ageCancerDiagnosis"
+              stateName={getAgeCancerDiagnosis.title}
               typeInput="number"
             />
             <Radio
               getState={isСhemotherapy}
               setState={setСhemotherapy}
-              stateName="isСhemotherapy"
+              stateName={isСhemotherapy.title}
             />
             <Radio
               getState={isHormoneTherapy}
               setState={setHormoneTherapy}
-              stateName="isHormoneTherapy"
+              stateName={isHormoneTherapy.title}
             />
             <Radio
               getState={isRadiationTherapy}
               setState={setRadiationTherapy}
-              stateName="isRadiationTherapy"
+              stateName={isRadiationTherapy.title}
             />
           </div>
         ) : null}
         <Radio
           getState={isConcomitantDiagnosis}
           setState={setConcomitantDiagnosis}
-          stateName="isConcomitantDiagnosis"
+          stateName={isConcomitantDiagnosis.title}
         />
         <Radio
           getState={isGeneticTesting}
           setState={setGeneticTesting}
-          stateName="isGeneticTesting"
+          stateName={isGeneticTesting.title}
         />
         {isGeneticTesting.value === "Да" ? (
           <Input
             getState={getGeneticTestingResult}
             setState={setGeneticTestingResult}
-            stateName="getGeneticTestingResult"
+            stateName={getGeneticTestingResult.title}
           />
         ) : null}
-        <Radio getState={isBiopsy} setState={setBiopsy} stateName="isBiopsy" />
+        <Radio
+          getState={isBiopsy}
+          setState={setBiopsy}
+          stateName={isBiopsy.title}
+        />
         {isBiopsy.value === "Да" ? (
           <div>
             <Input
               getState={getBiopsyOrganAndResult}
               setState={setBiopsyOrganAndResult}
-              stateName="getBiopsyOrganAndResult"
+              stateName={getBiopsyOrganAndResult.title}
             />
             <Radio
               getState={isBiopsyHyperplasia}
               setState={setBiopsyHyperplasia}
-              stateName="isBiopsyHyperplasia"
+              stateName={isBiopsyHyperplasia.title}
             />
           </div>
         ) : null}
         <Radio
           getState={isPreventiveSurgery}
           setState={setPreventiveSurgery}
-          stateName="isPreventiveSurgery"
+          stateName={isPreventiveSurgery.title}
         />
         <Radio
           getState={isColonPolyps}
           setState={setColonPolyps}
-          stateName="isColonPolyps"
+          stateName={isColonPolyps.title}
         />
         {isColonPolyps.value === "Да" ? (
           <Input
             getState={getColonPolypsResult}
             setState={setColonPolypsResult}
-            stateName="getColonPolypsResult"
+            stateName={getColonPolypsResult.title}
             typeInput="number"
           />
         ) : null}
@@ -422,7 +425,7 @@ function App() {
         <Radio
           getState={isRelativesWithBreastCancer}
           setState={setIsRelativesWithBreastCancer}
-          stateName="isRelativesWithBreastCancer"
+          stateName={isRelativesWithBreastCancer.title}
         />
         {isRelativesWithBreastCancer.value === "Да" ? (
           <div>
@@ -466,7 +469,7 @@ function App() {
         <Radio
           getState={isRelativesWithOtherCancer}
           setState={setIsRelativesWithOtherCancer}
-          stateName="isRelativesWithOtherCancer"
+          stateName={isRelativesWithOtherCancer.title}
         />
         {isRelativesWithOtherCancer.value === "Да" ? (
           <div>

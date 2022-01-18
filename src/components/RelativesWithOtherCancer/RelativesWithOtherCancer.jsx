@@ -41,7 +41,7 @@ const RelativesWithOtherCancer = (props) => {
       value: "",
     });
   return (
-    <div>
+    <div className="withRelatives">
       <Input
         getState={getNameRelativesWithOtherCancer}
         setState={(item) => {
@@ -51,7 +51,7 @@ const RelativesWithOtherCancer = (props) => {
             getNameRelativesWithOtherCancer: item,
           });
         }}
-        stateName="getNameRelativesWithOtherCancer"
+        stateName={getNameRelativesWithOtherCancer.title}
       />
       <Input
         getState={getDegreeRelativesWithOtherCancer}
@@ -62,7 +62,7 @@ const RelativesWithOtherCancer = (props) => {
             getDegreeRelativesWithOtherCancer: item,
           });
         }}
-        stateName="getDegreeRelativesWithOtherCancer"
+        stateName={getDegreeRelativesWithOtherCancer.title}
       />
       <Radio
         getState={isRelativesWithOtherFoM}
@@ -73,7 +73,7 @@ const RelativesWithOtherCancer = (props) => {
             isRelativesWithOtherFoM: item,
           });
         }}
-        stateName="isRelativesWithOtherFoM"
+        stateName={isRelativesWithOtherFoM.title}
       />
       <Input
         getState={getRelativesDiagnosissOrOrgan}
@@ -84,7 +84,7 @@ const RelativesWithOtherCancer = (props) => {
             getRelativesDiagnosissOrOrgan: item,
           });
         }}
-        stateName="getRelativesDiagnosissOrOrgan"
+        stateName={getRelativesDiagnosissOrOrgan.title}
       />
       <Input
         getState={getAgeRelativesWithOtherCancer}
@@ -95,7 +95,7 @@ const RelativesWithOtherCancer = (props) => {
             getAgeRelativesWithOtherCancer: item,
           });
         }}
-        stateName="getAgeRelativesWithOtherCancer"
+        stateName={getAgeRelativesWithOtherCancer.title}
         typeInput="number"
       />
     </div>
