@@ -6,6 +6,7 @@ import Radio from "./components/Radio/Radio";
 import RelativesWithBreastCancer from "./components/RelativesWithBreastCancer/RelativesWithBreastCancer";
 import RelativesWithOtherCancer from "./components/RelativesWithOtherCancer/RelativesWithOtherCancer";
 import AddButton from "./components/addButton/AddButton";
+import Section from "./components/Select/Select";
 function App() {
   const [gender, setGender] = useState({
     title: "Ваш пол",
@@ -96,13 +97,13 @@ function App() {
     value: "",
   });
   const [getNameCancerDiagnosis, setNameCancerDiagnosis] = useState({
-    title: "Название диагноза",
+    title: "Название Вашего диагноза",
     description: "",
-    placeholder: "Онкогепатология",
+    placeholder: "Рак толстой кишки",
     value: "",
   });
   const [getAgeCancerDiagnosis, setAgeCancerDiagnosis] = useState({
-    title: "Возраст постановки диагноза, лет",
+    title: "Возраст постановки Вашего диагноза, лет",
     description: "",
     placeholder: "15",
     value: "",
@@ -130,8 +131,15 @@ function App() {
   });
   const [isConcomitantDiagnosis, setConcomitantDiagnosis] = useState({
     title: "Есть ли у вас сопутствующий диагноз?",
-    description: "(Прочие хронические и онкологические заболевания)",
+    description:
+      "(Прочие хронические и онкологические заболевания, отличающиеся того, что вы указали выше)",
     buttons: ["Да", "Нет"],
+    value: "",
+  });
+  const [getConcomitantDiagnosis, setConcomitantDiagnosisInput] = useState({
+    title: "Название диагноза",
+    description: "",
+    placeholder: "Сахарный диабет, стенокардия",
     value: "",
   });
   const [isGeneticTesting, setGeneticTesting] = useState({
@@ -143,21 +151,28 @@ function App() {
   const [getGeneticTestingResult, setGeneticTestingResult] = useState({
     title: "Какой был результат?",
     description: "",
-    placeholder: "Не помню, но вроде все было хорошо",
+    placeholder: "Мутация в BRCA1 или ничего",
     value: "",
   });
 
   const [isBiopsy, setBiopsy] = useState({
-    title: "Выполнялись ли диагностические биопсии?",
+    title: "Выполнялись ли диагностические биопсии молочных желез?",
     description: "",
     buttons: ["Да", "Нет"],
     value: "",
   });
 
-  const [getBiopsyOrganAndResult, setBiopsyOrganAndResult] = useState({
-    title: "На каком органе проводилась биопсия и какой был результат?",
+  const [getNumbersBiopsy, setNumbersBiopsy] = useState({
+    title: "Сколько раз?",
     description: "",
-    placeholder: "Печень. Результат был отрицательный",
+    buttons: ["Один", "Больше двух"],
+    value: "",
+  });
+
+  const [getBiopsyOrganAndResult, setBiopsyOrganAndResult] = useState({
+    title: "Какой был результат биопсии?",
+    description: "",
+    placeholder: "Фиброаденома/киста",
     value: "",
   });
 
@@ -173,6 +188,18 @@ function App() {
     description: "(Удаление молочных желез, яичников с трубами)",
     buttons: ["Да", "Нет"],
     value: "",
+  });
+
+  const [getPreventiveSurgery, setPreventiveSurgerySelect] = useState({
+    title: "Что было сделано?",
+    description: "(Удаление молочных желез, яичников с трубами)",
+    options: [
+      "Удаление молочных желез",
+      "Удаление яичника",
+      "Удаление части кишечника",
+      "Удаление предстательной железы",
+    ],
+    value: "Удаление молочных желез",
   });
 
   const [isColonPolyps, setColonPolyps] = useState({
@@ -224,15 +251,14 @@ function App() {
     <form className="App" onSubmit={(e) => e.preventDefault()}>
       <div className="section activeSection">
         <h1>
-          <span>Исследование</span> для оценки наследственных онкорисков
+          <span>Тестирование</span> для оценки наследственных онкорисков
         </h1>
         <p>
           Пожалуйста, ответьте на вопросы о семейном анамнезе, чтобы получить
-          персонализированные рекомендации по скринингу и профилактике
-          онкологических заболеваний.
+          персональную оценку риска наследственных онкологических заболеваний
         </p>
         <p>
-          Опросник не большой и содержит 20-30 вопросов. Это поможет дать вам
+          Опросник небольшой и содержит 20-30 вопросов. Это поможет дать вам
           более детальные рекомендации по итогам теста.
         </p>
       </div>
@@ -365,6 +391,13 @@ function App() {
           setState={setConcomitantDiagnosis}
           stateName={isConcomitantDiagnosis.title}
         />
+        {isConcomitantDiagnosis.value === "Да" ? (
+          <Input
+            getState={getConcomitantDiagnosis}
+            setState={setConcomitantDiagnosisInput}
+            stateName={getConcomitantDiagnosis.title}
+          />
+        ) : null}
         <Radio
           getState={isGeneticTesting}
           setState={setGeneticTesting}
@@ -384,6 +417,11 @@ function App() {
         />
         {isBiopsy.value === "Да" ? (
           <div>
+            <Radio
+              getState={getNumbersBiopsy}
+              setState={setNumbersBiopsy}
+              stateName={getNumbersBiopsy.title}
+            />
             <Input
               getState={getBiopsyOrganAndResult}
               setState={setBiopsyOrganAndResult}
@@ -401,6 +439,13 @@ function App() {
           setState={setPreventiveSurgery}
           stateName={isPreventiveSurgery.title}
         />
+        {isPreventiveSurgery.value === "Да" ? (
+          <Section
+            getState={getPreventiveSurgery}
+            setState={setPreventiveSurgerySelect}
+            stateName={getPreventiveSurgery.title}
+          />
+        ) : null}
         <Radio
           getState={isColonPolyps}
           setState={setColonPolyps}
@@ -429,11 +474,12 @@ function App() {
         />
         {isRelativesWithBreastCancer.value === "Да" ? (
           <div>
-            {getRelativesWithBreastCancer.map((item) => {
+            {getRelativesWithBreastCancer.map((item, index) => {
               return (
                 <RelativesWithBreastCancer
                   key={item.id}
                   getState={item}
+                  getCounter={item.id}
                   setState={(value) =>
                     setRelativesWithBreastCancer(
                       getRelativesWithBreastCancer.map((item) =>
@@ -473,9 +519,10 @@ function App() {
         />
         {isRelativesWithOtherCancer.value === "Да" ? (
           <div>
-            {getRelativesWithOtherCancer.map((item) => {
+            {getRelativesWithOtherCancer.map((item, index) => {
               return (
                 <RelativesWithOtherCancer
+                  getCounter={index}
                   key={item.id}
                   getState={item}
                   setState={(value) =>

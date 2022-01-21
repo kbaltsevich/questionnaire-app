@@ -3,7 +3,7 @@ import Radio from "../Radio/Radio";
 import Input from "../Input/Input";
 
 const RelativesWithOtherCancer = (props) => {
-  const { getState, setState } = props;
+  const { getState, setState, getCounter } = props;
   const [getNameRelativesWithOtherCancer, setNameRelativesWithOtherCancer] =
     useState({
       title: "Имя родственника",
@@ -20,7 +20,7 @@ const RelativesWithOtherCancer = (props) => {
     });
 
   const [isRelativesWithOtherFoM, setRelativesWithOtherFoM] = useState({
-    title: "По какой линии относится вам ваш родственник?",
+    title: "По какой линии относится Вам Ваш родственник?",
     description: "",
     buttons: ["Отцовская", "Материнская"],
     value: "",
@@ -51,7 +51,7 @@ const RelativesWithOtherCancer = (props) => {
             getNameRelativesWithOtherCancer: item,
           });
         }}
-        stateName={getNameRelativesWithOtherCancer.title}
+        stateName={`${getNameRelativesWithOtherCancer.title}_${getCounter}`}
       />
       <Input
         getState={getDegreeRelativesWithOtherCancer}
@@ -62,7 +62,7 @@ const RelativesWithOtherCancer = (props) => {
             getDegreeRelativesWithOtherCancer: item,
           });
         }}
-        stateName={getDegreeRelativesWithOtherCancer.title}
+        stateName={getDegreeRelativesWithOtherCancer.title + `_${getCounter}`}
       />
       <Radio
         getState={isRelativesWithOtherFoM}
@@ -73,7 +73,7 @@ const RelativesWithOtherCancer = (props) => {
             isRelativesWithOtherFoM: item,
           });
         }}
-        stateName={isRelativesWithOtherFoM.title}
+        stateName={isRelativesWithOtherFoM.title + `_${getCounter}`}
       />
       <Input
         getState={getRelativesDiagnosissOrOrgan}
@@ -84,7 +84,7 @@ const RelativesWithOtherCancer = (props) => {
             getRelativesDiagnosissOrOrgan: item,
           });
         }}
-        stateName={getRelativesDiagnosissOrOrgan.title}
+        stateName={getRelativesDiagnosissOrOrgan.title + `_${getCounter}`}
       />
       <Input
         getState={getAgeRelativesWithOtherCancer}
@@ -95,7 +95,7 @@ const RelativesWithOtherCancer = (props) => {
             getAgeRelativesWithOtherCancer: item,
           });
         }}
-        stateName={getAgeRelativesWithOtherCancer.title}
+        stateName={getAgeRelativesWithOtherCancer.title + `_${getCounter}`}
         typeInput="number"
       />
     </div>

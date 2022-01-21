@@ -32,9 +32,11 @@ const FormButton = (props) => {
       formData.forEach((value, key, parent) => {
         arrInputs.push(key);
       });
+      // arrInputs = arrInputs.map((item) => {
+      //   return `${item}`.replace(/_\d*/, "");
+      // });
       let arrSetInputs = new Set(arrInputs);
       arrInputs = [...arrSetInputs];
-      console.log(arrInputs);
 
       arrInputs.forEach((item) => {
         const itemLength = document.querySelectorAll(
@@ -43,14 +45,13 @@ const FormButton = (props) => {
         if (itemLength.length > 0) {
           let arrValues = [];
           itemLength.forEach((element) => {
-            console.log(element.getAttribute("type"));
             if (element.getAttribute("type") === "radio" && element.checked) {
               arrValues.push(element.value);
             } else if (element.getAttribute("type") !== "radio") {
               arrValues.push(element.value);
             }
           });
-          return formData.set(item, arrValues.join(", "));
+          return formData.set(item, arrValues.join("; "));
         }
       });
 
@@ -59,6 +60,26 @@ const FormButton = (props) => {
       //   object[key] = value;
       // });
       // var json = JSON.stringify(object);
+
+      let testArr = [];
+      formData.forEach((value, key, parent) => {
+        testArr.push([key, value]);
+      });
+      testArr = testArr.map((item) => [item[0].replace(/_\d*/, ""), item[1]]);
+
+      let finalObject = {};
+
+      testArr.forEach((item) => {
+        if (typeof finalObject[item[0]] === "undefined") {
+          finalObject[item[0]] = item[1];
+        } else {
+          finalObject[item[0]] = `${finalObject[item[0]]}; ${item[1]}`;
+        }
+      });
+
+      Object.keys(finalObject).forEach((key) =>
+        formData.set(key, finalObject[key])
+      );
 
       fetch(scriptURL, {
         method: "POST",
@@ -72,9 +93,32 @@ const FormButton = (props) => {
       });
       return false;
     }
+
+    let arrInputsNamesInSelects = [];
+    arrClasses[indexActiveClass].querySelectorAll("input").forEach((item) => {
+      arrInputsNamesInSelects.push(item.getAttribute("name"));
+    });
+
+    arrInputsNamesInSelects = new Set(arrInputsNamesInSelects);
+
+    arrInputsNamesInSelects.forEach((item) => {
+      const inputName = document.querySelectorAll(`input[name="${item}"]`);
+      if (inputName.length > 0) {
+        if (inputName[0].getAttribute("type") === "radio") {
+          return console.log(
+            document.querySelectorAll(`input[name='${item}']:checked`)
+          );
+        }
+      }
+    });
+
     indexActiveClass++;
     arrClasses.forEach((item) => item.classList.remove(activeClass));
     arrClasses[indexActiveClass].classList.add(activeClass);
+    arrClasses[indexActiveClass].scrollIntoView({
+      inline: "start",
+      behavior: "smooth",
+    });
     if (indexActiveClass === lengthArrClasses - 1) {
       setTitleButton(lastTitle);
     }

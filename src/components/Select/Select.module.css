@@ -1,0 +1,60 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px 0;
+  text-align: center;
+}
+.title {
+  display: block;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 28px;
+  color: #ffffff;
+  margin: 0 auto 15px;
+}
+
+.description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
+  opacity: 0.4;
+  margin: 0 auto 15px;
+  padding: 0;
+}
+
+.forSelect {
+  position: relative;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 100px;
+  padding: 10px 15px;
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  font-size: 18px;
+  line-height: 28px;
+  color: #000000;
+  transition: all 0.3s ease;
+}
+
+.forSelect:hover {
+  cursor: pointer;
+}
+
+.forOption {
+  text-align: center;
+  background: #ffffff;
+  border-radius: 100px;
+  padding: 10px 15px;
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  font-size: 18px;
+  line-height: 28px;
+  color: #000000;
+  transition: all 0.3s ease;
+}
+.forOption:hover {
+  cursor: pointer;
+}

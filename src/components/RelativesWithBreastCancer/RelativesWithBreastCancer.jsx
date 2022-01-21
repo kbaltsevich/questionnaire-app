@@ -3,7 +3,7 @@ import Radio from "../Radio/Radio";
 import Input from "../Input/Input";
 
 const RelativesWithBreastCancer = (props) => {
-  const { getState, setState } = props;
+  const { getState, setState, getCounter } = props;
   const [getNameRelativesWithBreastCancer, setNameRelativesWithBreastCancer] =
     useState({
       title: "Имя родственника ",
@@ -22,7 +22,7 @@ const RelativesWithBreastCancer = (props) => {
   });
 
   const [isRelativesFoM, setRelativesFoM] = useState({
-    title: "По какой линии относится вам ваш родственник? ",
+    title: "По какой линии относится Вам Ваш родственник? ",
     description: "",
     buttons: ["Отцовская", "Материнская"],
     value: "",
@@ -60,7 +60,7 @@ const RelativesWithBreastCancer = (props) => {
             getNameRelativesWithBreastCancer: item,
           });
         }}
-        stateName={getNameRelativesWithBreastCancer.title}
+        stateName={`${getNameRelativesWithBreastCancer.title}_${getCounter}`}
       />
       <Input
         getState={getDegreeRelativesWithBreastCancer}
@@ -71,7 +71,7 @@ const RelativesWithBreastCancer = (props) => {
             getDegreeRelativesWithBreastCancer: item,
           });
         }}
-        stateName={getDegreeRelativesWithBreastCancer.title}
+        stateName={`${getDegreeRelativesWithBreastCancer.title}_${getCounter}`}
       />
       <Radio
         getState={isRelativesFoM}
@@ -82,7 +82,7 @@ const RelativesWithBreastCancer = (props) => {
             isRelativesFoM: item,
           });
         }}
-        stateName={isRelativesFoM.title}
+        stateName={isRelativesFoM.title + `_${getCounter}`}
       />
       <Input
         getState={getAgeRelativesWithBreastCancer}
@@ -93,7 +93,7 @@ const RelativesWithBreastCancer = (props) => {
             getAgeRelativesWithBreastCancer: item,
           });
         }}
-        stateName={getAgeRelativesWithBreastCancer.title}
+        stateName={`${getAgeRelativesWithBreastCancer.title}_${getCounter}`}
         typeInput="number"
       />
       <Radio
@@ -105,7 +105,7 @@ const RelativesWithBreastCancer = (props) => {
             isTripleNegativeSubtypeCancer: item,
           });
         }}
-        stateName={isTripleNegativeSubtypeCancer.title}
+        stateName={`${isTripleNegativeSubtypeCancer.title}_${getCounter}`}
       />
       <Radio
         getState={isBilateralProcess}
@@ -116,7 +116,7 @@ const RelativesWithBreastCancer = (props) => {
             isBilateralProcess: item,
           });
         }}
-        stateName={isBilateralProcess.title}
+        stateName={`${isBilateralProcess.title}_${getCounter}`}
       />
     </div>
   );
