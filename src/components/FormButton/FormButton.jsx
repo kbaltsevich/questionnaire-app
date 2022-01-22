@@ -18,6 +18,62 @@ const FormButton = (props) => {
         return (indexActiveClass = index);
       }
     });
+    let arrNoValidInputs = [];
+    let arrInputsNamesInSelects = [];
+    arrClasses[indexActiveClass].querySelectorAll("input").forEach((item) => {
+      item.parentElement.parentElement.parentElement.classList.remove(
+        "noValid"
+      );
+      item.classList.remove("noValid");
+      arrInputsNamesInSelects.push(item.getAttribute("name"));
+    });
+    arrInputsNamesInSelects.forEach((item) => {
+      const inputName = document.querySelectorAll(`input[name="${item}"]`);
+      if (inputName.length > 1) {
+        if (inputName[0].getAttribute("type") === "radio") {
+          if (
+            document.querySelectorAll(`input[name='${item}']:checked`)
+              .length === 0
+          ) {
+            arrNoValidInputs.push(item);
+          }
+        }
+      } else {
+        if (!inputName[0].value) {
+          arrNoValidInputs.push(item);
+        }
+      }
+    });
+    console.log(arrNoValidInputs);
+    if (arrNoValidInputs.length > 0) {
+      console.log(
+        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
+      );
+      if (
+        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
+          .length > 1
+      ) {
+        document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .parentElement.parentElement.parentElement.classList.add("noValid");
+        return document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .parentElement.parentElement.parentElement.scrollIntoView({
+            inline: "start",
+            behavior: "smooth",
+          });
+      } else {
+        document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .classList.add("noValid");
+        return document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .scrollIntoView({
+            inline: "start",
+            behavior: "smooth",
+          });
+      }
+    }
     if (indexActiveClass === lengthArrClasses - 1) {
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbzlp7gQp9GmRjrcSL_2JUSb0jDwV-aeQi0P3nRTPAQ1u3xj8IFv09zOwBrwT_l5_HVaPQ/exec";
@@ -82,7 +138,14 @@ const FormButton = (props) => {
         method: "POST",
         body: formData,
       })
-        .then((response) => console.log(response))
+        .then((response) => {
+          arrClasses.forEach((item) => item.classList.remove(activeClass));
+          document
+            .querySelectorAll("button")
+            .forEach((item) => (item.style.display = "none"));
+          document.querySelector(".end").classList.add(activeClass);
+          return console.log(response);
+        })
         .catch((error) => console.error("Error!", error.message));
 
       form.addEventListener("submit", (e) => {
@@ -91,65 +154,8 @@ const FormButton = (props) => {
       return false;
     }
 
-    let arrInputsNamesInSelects = [];
-    arrClasses[indexActiveClass].querySelectorAll("input").forEach((item) => {
-      item.parentElement.parentElement.parentElement.classList.remove(
-        "noValid"
-      );
-      item.classList.remove("noValid");
-      arrInputsNamesInSelects.push(item.getAttribute("name"));
-    });
-
     arrInputsNamesInSelects = new Set(arrInputsNamesInSelects);
 
-    let arrNoValidInputs = [];
-    arrInputsNamesInSelects.forEach((item) => {
-      const inputName = document.querySelectorAll(`input[name="${item}"]`);
-      if (inputName.length > 1) {
-        if (inputName[0].getAttribute("type") === "radio") {
-          if (
-            document.querySelectorAll(`input[name='${item}']:checked`)
-              .length === 0
-          ) {
-            arrNoValidInputs.push(item);
-          }
-        }
-      } else {
-        if (!inputName[0].value) {
-          arrNoValidInputs.push(item);
-        }
-      }
-    });
-    console.log(arrNoValidInputs);
-    if (arrNoValidInputs.length > 0) {
-      console.log(
-        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
-      );
-      if (
-        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
-          .length > 1
-      ) {
-        document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .parentElement.parentElement.parentElement.classList.add("noValid");
-        return document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .parentElement.parentElement.parentElement.scrollIntoView({
-            inline: "start",
-            behavior: "smooth",
-          });
-      } else {
-        document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .classList.add("noValid");
-        return document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .scrollIntoView({
-            inline: "start",
-            behavior: "smooth",
-          });
-      }
-    }
     indexActiveClass++;
     arrClasses.forEach((item) => item.classList.remove(activeClass));
     arrClasses[indexActiveClass].classList.add(activeClass);

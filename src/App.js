@@ -550,6 +550,9 @@ function App() {
           </div>
         ) : null}
       </div>
+      <div className="end">
+        <span>Спасибо за тест!</span>
+      </div>
       <FormButton
         searchClass="section"
         activeClass="activeSection"
