@@ -32,9 +32,6 @@ const FormButton = (props) => {
       formData.forEach((value, key, parent) => {
         arrInputs.push(key);
       });
-      // arrInputs = arrInputs.map((item) => {
-      //   return `${item}`.replace(/_\d*/, "");
-      // });
       let arrSetInputs = new Set(arrInputs);
       arrInputs = [...arrSetInputs];
 
@@ -96,22 +93,63 @@ const FormButton = (props) => {
 
     let arrInputsNamesInSelects = [];
     arrClasses[indexActiveClass].querySelectorAll("input").forEach((item) => {
+      item.parentElement.parentElement.parentElement.classList.remove(
+        "noValid"
+      );
+      item.classList.remove("noValid");
       arrInputsNamesInSelects.push(item.getAttribute("name"));
     });
 
     arrInputsNamesInSelects = new Set(arrInputsNamesInSelects);
 
+    let arrNoValidInputs = [];
     arrInputsNamesInSelects.forEach((item) => {
       const inputName = document.querySelectorAll(`input[name="${item}"]`);
-      if (inputName.length > 0) {
+      if (inputName.length > 1) {
         if (inputName[0].getAttribute("type") === "radio") {
-          return console.log(
+          if (
             document.querySelectorAll(`input[name='${item}']:checked`)
-          );
+              .length === 0
+          ) {
+            arrNoValidInputs.push(item);
+          }
+        }
+      } else {
+        if (!inputName[0].value) {
+          arrNoValidInputs.push(item);
         }
       }
     });
-
+    console.log(arrNoValidInputs);
+    if (arrNoValidInputs.length > 0) {
+      console.log(
+        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
+      );
+      if (
+        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
+          .length > 1
+      ) {
+        document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .parentElement.parentElement.parentElement.classList.add("noValid");
+        return document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .parentElement.parentElement.parentElement.scrollIntoView({
+            inline: "start",
+            behavior: "smooth",
+          });
+      } else {
+        document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .classList.add("noValid");
+        return document
+          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
+          .scrollIntoView({
+            inline: "start",
+            behavior: "smooth",
+          });
+      }
+    }
     indexActiveClass++;
     arrClasses.forEach((item) => item.classList.remove(activeClass));
     arrClasses[indexActiveClass].classList.add(activeClass);

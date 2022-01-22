@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: all 0.5s ease-in;
 }
 .App {
   /* max-width: 1360px; */
@@ -68,6 +69,13 @@
   animation: show 0.5s 1; /* Указываем название анимации, её время и количество повторов*/
   animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
   animation-delay: 0; /* Задержка перед началом */
+}
+
+.noValid {
+  border-radius: 100px;
+  -webkit-box-shadow: 0px 0px 12px 9px rgba(255, 0, 0, 0.42) !important;
+  -moz-box-shadow: 0px 0px 12px 9px rgba(255, 0, 0, 0.42) !important;
+  box-shadow: 0px 0px 12px 9px rgba(255, 0, 0, 0.42) !important;
 }
 
 @keyframes show {

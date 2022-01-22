@@ -6,7 +6,7 @@ import Radio from "./components/Radio/Radio";
 import RelativesWithBreastCancer from "./components/RelativesWithBreastCancer/RelativesWithBreastCancer";
 import RelativesWithOtherCancer from "./components/RelativesWithOtherCancer/RelativesWithOtherCancer";
 import AddButton from "./components/addButton/AddButton";
-import Section from "./components/Select/Select";
+import Select from "./components/Select/Select";
 function App() {
   const [gender, setGender] = useState({
     title: "Ваш пол",
@@ -440,7 +440,7 @@ function App() {
           stateName={isPreventiveSurgery.title}
         />
         {isPreventiveSurgery.value === "Да" ? (
-          <Section
+          <Select
             getState={getPreventiveSurgery}
             setState={setPreventiveSurgerySelect}
             stateName={getPreventiveSurgery.title}

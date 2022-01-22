@@ -15,6 +15,7 @@ const Input = (props) => {
         name={stateName}
         id={stateName}
         placeholder={getState.placeholder}
+        value={getState.value}
         onChange={(e) => setState({ ...getState, value: e.target.value })}
       />
     </div>
