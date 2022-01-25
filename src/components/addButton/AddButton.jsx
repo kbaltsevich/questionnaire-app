@@ -5,7 +5,7 @@ const AddButton = (props) => {
   const { addValue, setVauelState, titleButton } = props;
   return (
     <button
-      className={style.addButton}
+      className="addButton"
       onClick={(e) => {
         e.preventDefault();
         return setVauelState(addValue);

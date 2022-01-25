@@ -7,6 +7,7 @@ import RelativesWithBreastCancer from "./components/RelativesWithBreastCancer/Re
 import RelativesWithOtherCancer from "./components/RelativesWithOtherCancer/RelativesWithOtherCancer";
 import AddButton from "./components/addButton/AddButton";
 import Select from "./components/Select/Select";
+import PrevButton from "./components/prevButton/PrevButton";
 function App() {
   const [gender, setGender] = useState({
     title: "Ваш пол",
@@ -17,7 +18,7 @@ function App() {
   const [fullName, setFullName] = useState({
     title: "Как Вас зовут?",
     description: "(Желательно полное имя и отчество)",
-    placeholder: "Иванов Иван Иванович!",
+    placeholder: "Иванов Иван Иванович",
     value: "",
   });
   const [isJews, setIsJews] = useState({
@@ -37,16 +38,21 @@ function App() {
     description: "",
     placeholder: "69",
     value: "",
+    maxValue: 300,
+    minValue: 30,
   });
   const [getHeight, setHeight] = useState({
     title: "Ваш рост, см",
     description: "",
     placeholder: "169",
     value: "",
+    maxValue: 250,
+    minValue: 60,
   });
   const [getNationality, setNationality] = useState({
     title: "Национальность",
-    description: "",
+    description:
+      "(Можете не отвечать на этот вопрос, но он влияет на результат теста)",
     placeholder: "русский",
     value: "",
   });
@@ -247,6 +253,8 @@ function App() {
     ]
   );
 
+  const [hidePrevButton, setHidePrevButton] = useState(true);
+
   return (
     <form className="App" onSubmit={(e) => e.preventDefault()}>
       <div className="section activeSection">
@@ -296,6 +304,7 @@ function App() {
           getState={getNationality}
           setState={setNationality}
           stateName={getNationality.title}
+          notForValidation={true}
         />
         <Radio
           getState={isJews}
@@ -553,11 +562,29 @@ function App() {
       <div className="end">
         <span>Спасибо за тест!</span>
       </div>
+      {/* {document
+        .querySelectorAll(".section")[0]
+        .classList.contains("activeSection") ? null : (
+        <PrevButton
+          searchClass="section"
+          activeClass="activeSection"
+          titleButton="Назад"
+        />
+      )} */}
+      {hidePrevButton ? null : (
+        <PrevButton
+          searchClass="section"
+          activeClass="activeSection"
+          titleButton="Назад"
+          setHidePrevButton={setHidePrevButton}
+        />
+      )}
       <FormButton
         searchClass="section"
         activeClass="activeSection"
         firstTitle="Продолжить"
         lastTitle="Закончить опрос"
+        setHidePrevButton={setHidePrevButton}
         getAllState
       />
     </form>

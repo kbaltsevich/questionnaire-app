@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import style from "./FormButton.module.css";
 
 const FormButton = (props) => {
-  const { searchClass, firstTitle, lastTitle, getAllState, activeClass } =
-    props;
+  const {
+    searchClass,
+    firstTitle,
+    lastTitle,
+    getAllState,
+    activeClass,
+    setHidePrevButton,
+  } = props;
 
   const [titleButton, setTitleButton] = useState(firstTitle);
 
@@ -14,6 +20,11 @@ const FormButton = (props) => {
     const lengthArrClasses = arrClasses.length;
     let indexActiveClass = 0;
     arrClasses.forEach((item, index) => {
+      if (item.classList.contains(activeClass) && index === 0) {
+        setHidePrevButton(true);
+      } else {
+        setHidePrevButton(false);
+      }
       if (item.classList.contains(activeClass)) {
         return (indexActiveClass = index);
       }
@@ -21,9 +32,7 @@ const FormButton = (props) => {
     let arrNoValidInputs = [];
     let arrInputsNamesInSelects = [];
     arrClasses[indexActiveClass].querySelectorAll("input").forEach((item) => {
-      item.parentElement.parentElement.parentElement.classList.remove(
-        "noValid"
-      );
+      item.parentElement.classList.remove("noValid");
       item.classList.remove("noValid");
       arrInputsNamesInSelects.push(item.getAttribute("name"));
     });
@@ -39,39 +48,36 @@ const FormButton = (props) => {
           }
         }
       } else {
-        if (!inputName[0].value) {
+        if (
+          !inputName[0].value &&
+          !inputName[0].classList.contains("not-for-validation")
+        ) {
           arrNoValidInputs.push(item);
         }
       }
     });
-    console.log(arrNoValidInputs);
     if (arrNoValidInputs.length > 0) {
-      console.log(
-        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
-      );
       if (
         document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
           .length > 1
       ) {
         document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .parentElement.parentElement.parentElement.classList.add("noValid");
-        return document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .parentElement.parentElement.parentElement.scrollIntoView({
-            inline: "start",
-            behavior: "smooth",
-          });
+          .querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
+          .forEach((item) =>
+            item.parentElement.querySelector("span").classList.add("noValid")
+          );
+        return document.querySelector(`.App`).scrollIntoView({
+          inline: "start",
+          behavior: "smooth",
+        });
       } else {
         document
           .querySelector(`input[name='${arrNoValidInputs[0]}']`)
           .classList.add("noValid");
-        return document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .scrollIntoView({
-            inline: "start",
-            behavior: "smooth",
-          });
+        return document.querySelector(`.App`).scrollIntoView({
+          inline: "start",
+          behavior: "smooth",
+        });
       }
     }
     if (indexActiveClass === lengthArrClasses - 1) {
@@ -155,11 +161,10 @@ const FormButton = (props) => {
     }
 
     arrInputsNamesInSelects = new Set(arrInputsNamesInSelects);
-
     indexActiveClass++;
     arrClasses.forEach((item) => item.classList.remove(activeClass));
     arrClasses[indexActiveClass].classList.add(activeClass);
-    arrClasses[indexActiveClass].scrollIntoView({
+    document.querySelector(".App").scrollIntoView({
       inline: "start",
       behavior: "smooth",
     });
@@ -170,7 +175,7 @@ const FormButton = (props) => {
 
   return (
     <button
-      className={style.buttonStyle}
+      className="buttonStyle"
       onClick={(e) => {
         e.preventDefault();
         return moveActiveClass(searchClass, activeClass);

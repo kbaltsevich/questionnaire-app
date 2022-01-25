@@ -4,15 +4,15 @@ const Radio = (props) => {
   const { getState, setState, stateName } = props;
 
   return (
-    <div className={style.container}>
-      <span className={style.title}>{getState.title}</span>
+    <div className="container">
+      <span className="title">{getState.title}</span>
       {getState.description ? (
-        <p className={style.description}>{getState.description}</p>
+        <p className="description">{getState.description}</p>
       ) : null}
-      <div className={style.buttons_container}>
+      <div className="buttons_container">
         {getState.buttons.map((item, index) => {
           return (
-            <label key={index} className={style.forLabel}>
+            <label key={index} className="forLabel">
               <input
                 type="radio"
                 name={stateName}

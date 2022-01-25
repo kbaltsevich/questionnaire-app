@@ -7,10 +7,10 @@ const Select = (props) => {
   const [selectState, setSelectState] = useState(getState);
 
   return (
-    <div className={style.container}>
-      <span className={style.title}>{getState.title}</span>
+    <div className="container">
+      <span className="title">{getState.title}</span>
       {getState.description ? (
-        <p className={style.description}>{getState.description}</p>
+        <p className="description">{getState.description}</p>
       ) : null}
       <select
         value={selectState.value}
@@ -19,12 +19,12 @@ const Select = (props) => {
           setSelectState({ ...selectState, value: e.target.value });
           return setState({ ...getState, value: e.target.value });
         }}
-        className={style.forSelect}
+        className="forSelect"
       >
         {selectState.options.map((opt, index) => {
           return (
             <option
-              className={style.forOption}
+              className="forOption"
               key={new Date().getTime() + index}
               value={opt}
             >
