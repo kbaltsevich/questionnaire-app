@@ -31,6 +31,7 @@ function App() {
     title: "Дата рождения",
     description: "",
     placeholder: "28.06.1998",
+    minValue: "1900-01-01",
     value: "",
   });
   const [getWeight, setWeight] = useState({
@@ -286,7 +287,7 @@ function App() {
           getState={dataBirthday}
           setState={setDataBirthday}
           stateName={dataBirthday.title}
-          typeInput="date"
+          isDate={true}
         />
         <Input
           getState={getWeight}
@@ -305,6 +306,7 @@ function App() {
           setState={setNationality}
           stateName={getNationality.title}
           notForValidation={true}
+          onlyText={true}
         />
         <Radio
           getState={isJews}

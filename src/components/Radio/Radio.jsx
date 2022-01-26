@@ -19,7 +19,14 @@ const Radio = (props) => {
                 id={`${stateName}_${index}`}
                 value={item}
                 onChange={(e) => {
-                  setState({ ...getState, value: e.target.value });
+                  document
+                    .querySelectorAll(`input[name='${stateName}']`)
+                    .forEach((input) => {
+                      input.parentElement
+                        .querySelector("span")
+                        .classList.remove("noValid");
+                    });
+                  return setState({ ...getState, value: e.target.value });
                 }}
               />
               <span>{item}</span>

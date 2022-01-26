@@ -57,28 +57,27 @@ const FormButton = (props) => {
       }
     });
     if (arrNoValidInputs.length > 0) {
-      if (
-        document.querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
-          .length > 1
-      ) {
-        document
-          .querySelectorAll(`input[name='${arrNoValidInputs[0]}']`)
-          .forEach((item) =>
-            item.parentElement.querySelector("span").classList.add("noValid")
-          );
-        return document.querySelector(`.App`).scrollIntoView({
-          inline: "start",
-          behavior: "smooth",
-        });
-      } else {
-        document
-          .querySelector(`input[name='${arrNoValidInputs[0]}']`)
-          .classList.add("noValid");
-        return document.querySelector(`.App`).scrollIntoView({
-          inline: "start",
-          behavior: "smooth",
-        });
-      }
+      arrNoValidInputs.forEach((item) => {
+        if (document.querySelectorAll(`input[name='${item}']`).length > 1) {
+          document.querySelector(`.App`).scrollIntoView({
+            inline: "start",
+            behavior: "smooth",
+          });
+          return document
+            .querySelectorAll(`input[name='${item}']`)
+            .forEach((item) =>
+              item.parentElement.querySelector("span").classList.add("noValid")
+            );
+        } else {
+          return document
+            .querySelector(`input[name='${item}']`)
+            .classList.add("noValid");
+        }
+      });
+      return document.querySelector(`html`).scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
     }
     if (indexActiveClass === lengthArrClasses - 1) {
       const scriptURL =
