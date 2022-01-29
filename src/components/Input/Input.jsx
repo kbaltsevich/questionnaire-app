@@ -22,7 +22,7 @@ const Input = (props) => {
         <p className="description">{getState.description}</p>
       ) : null}
       <input
-        autocomplete="off"
+        // autocomplete="off"
         className={
           notForValidation
             ? ["forInput", "not-for-validation"].join(" ")
@@ -50,7 +50,7 @@ const Input = (props) => {
         }}
         min={getState.minValue ? getState.minValue : null}
         max={getState.maxValue ? getState.maxValue : null}
-        onClick={(e) => (isDate ? e.preventDefault() : null)}
+        // onClick={(e) => (isDate ? e.preventDefault() : null)}
         pattern={typeInput === "text" ? "^^[A-Za-zА-Яа-яЁё\\s]+$" : null}
         onFocus={isDate ? () => setTypeState("date") : null}
         onBlur={() => {

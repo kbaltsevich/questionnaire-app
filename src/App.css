@@ -23,8 +23,12 @@
   transition: all 0.2s ease-in;
   text-align: center;
   max-width: 1160px;
-  margin: 0 auto;
+  margin: 0 20px;
   font-family: "DINPro", Arial, sans-serif;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
 }
 
 .section h1 {
@@ -36,6 +40,14 @@
   color: #ffffff;
   margin: 0 0 50px;
   font-family: "DINPro", Arial, sans-serif;
+}
+
+@media (max-width: 639px) {
+  .section h1 {
+    font-size: 40px;
+    line-height: 50px;
+    margin: 0 0 15px;
+  }
 }
 
 .section h1 span {
@@ -55,6 +67,13 @@
   font-family: "DINPro", Arial, sans-serif;
 }
 
+@media (max-width: 639px) {
+  .section h2 {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
 .section > p {
   font-style: normal;
   font-weight: normal;
@@ -64,6 +83,13 @@
   opacity: 0.9;
   margin: 0 0 30px;
   font-family: "DINPro", Arial, sans-serif;
+}
+
+@media (max-width: 639px) {
+  .section > p {
+    font-size: 22px;
+    line-height: 30px;
+  }
 }
 
 .activeSection {
@@ -154,8 +180,20 @@
   -o-transition: none !important;
 }
 
+@media (max-width: 639px) {
+  .container {
+    padding: 15px 0;
+  }
+}
+
 .container:last-child {
   padding: 20px 0 30px;
+}
+
+@media (max-width: 639px) {
+  .container:last-child {
+    padding: 15px 0 10px;
+  }
 }
 
 .title {
@@ -169,14 +207,29 @@
   font-family: "DINPro", Arial, sans-serif;
 }
 
+@media (max-width: 639px) {
+  .title {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
 .buttons_container {
   transition: none !important;
-  margin: 40px auto 30px;
+  margin: 40px auto 25px;
   font-family: "DINPro", Arial, sans-serif;
   -webkit-transition: none !important;
   -moz-transition: none !important;
   -ms-transition: none !important;
   -o-transition: none !important;
+}
+@media (max-width: 639px) {
+  .buttons_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 7px auto 0;
+  }
 }
 
 .description {
@@ -191,6 +244,14 @@
   font-family: "DINPro", Arial, sans-serif;
 }
 
+@media (max-width: 639px) {
+  .description {
+    font-size: 16px;
+    line-height: 23px;
+    margin: 0 auto 12px;
+  }
+}
+
 .description ~ .forInput {
   margin-top: 0;
 }
@@ -198,6 +259,15 @@
 .forLabel {
   padding: 0 5px;
   font-family: "DINPro", Arial, sans-serif;
+}
+
+@media (max-width: 639px) {
+  .forLabel {
+    height: 60px;
+    margin: 0 0 10px;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .forLabel span {
@@ -212,6 +282,15 @@
   padding: 19px 38px 23px;
   border-radius: 100px;
   font-family: "DINPro", Arial, sans-serif;
+}
+
+@media (max-width: 639px) {
+  .forLabel span {
+    height: 60px;
+    font-size: 18px;
+    line-height: 28px;
+    padding: 14px 32px 18px;
+  }
 }
 
 .forLabel span:hover {
@@ -244,6 +323,18 @@
   transition: all 0.3s ease-in;
   margin: 30px auto;
   font-family: "DINPro", Arial, sans-serif;
+}
+
+@media (max-width: 639px) {
+  .buttonStyle,
+  .addButton,
+  .prevButton,
+  .removeButton {
+    width: 335px !important;
+    height: 60px !important;
+    font-size: 18px !important;
+    line-height: 28px !important;
+  }
 }
 
 .buttonStyle:hover {
@@ -311,6 +402,15 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+@media (max-width: 639px) {
+  .forInput {
+    min-width: 213px;
+    height: 60px;
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
 
 .forDate {
@@ -391,6 +491,16 @@ input[type="date"] {
   /* -webkit-padding-start: 1px; */
 }
 
+@media (max-width: 639px) {
+  input[type="date"] {
+    padding: 0 38px;
+    /* font-size: 18px;
+    line-height: 28px; */
+    -webkit-padding-end: 38px;
+    -webkit-padding-start: 38px;
+  }
+}
+
 input[type="date"]::-webkit-datetime-edit-fields-wrapper {
   text-align: center;
   display: inline-block;
@@ -398,7 +508,12 @@ input[type="date"]::-webkit-datetime-edit-fields-wrapper {
   font-size: 22px;
   font-weight: 400;
   line-height: 28px;
-  border: 1px solid #ffffff;
+}
+@media (max-width: 639px) {
+  input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
 
 input[type="date"]::-webkit-datetime-edit {
@@ -418,18 +533,47 @@ input[type="date"]::-webkit-datetime-edit {
   flex-direction: column;
 }
 
+@media (max-width: 639px) {
+  .checksContainer {
+    min-width: 213px;
+    min-height: 60px;
+    margin: 7px auto 0;
+  }
+}
+
 .checksLabel {
   padding: 10px;
-  padding: 10px;
   margin: 0 0 33px;
+}
+
+@media (max-width: 639px) {
+  .checksLabel {
+    height: 60px;
+    padding: 0;
+    margin: 0 0 5px;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .checksLabel:first-child {
   margin: 20px 0 33px;
 }
 
+@media (max-width: 639px) {
+  .checksLabel:first-child {
+    margin: 0 0 5px;
+  }
+}
+
 .checksLabel:last-child {
   margin: 0 0 20px;
+}
+
+@media (max-width: 639px) {
+  .checksLabel:last-child {
+    margin: 0px;
+  }
 }
 
 .checksSpan {
@@ -444,6 +588,16 @@ input[type="date"]::-webkit-datetime-edit {
   padding: 19px 38px 23px;
   border-radius: 100px;
   font-family: "DINPro", Arial, sans-serif;
+}
+
+@media (max-width: 639px) {
+  .checksSpan {
+    min-width: 213px;
+    height: 60px;
+    font-size: 18px;
+    line-height: 28px;
+    padding: 14px 32px 18px;
+  }
 }
 
 .checksSpan:hover {
