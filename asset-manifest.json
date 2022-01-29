@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/questionnaire-app/static/css/main.9f761e25.css",
-    "main.js": "/questionnaire-app/static/js/main.6ecf0905.js",
+    "main.css": "/questionnaire-app/static/css/main.c240e71a.css",
+    "main.js": "/questionnaire-app/static/js/main.60155d26.js",
     "index.html": "/questionnaire-app/index.html",
-    "main.9f761e25.css.map": "/questionnaire-app/static/css/main.9f761e25.css.map",
-    "main.6ecf0905.js.map": "/questionnaire-app/static/js/main.6ecf0905.js.map"
+    "main.c240e71a.css.map": "/questionnaire-app/static/css/main.c240e71a.css.map",
+    "main.60155d26.js.map": "/questionnaire-app/static/js/main.60155d26.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f761e25.css",
-    "static/js/main.6ecf0905.js"
+    "static/css/main.c240e71a.css",
+    "static/js/main.60155d26.js"
   ]
 }
