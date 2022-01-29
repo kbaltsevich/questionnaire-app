@@ -1,11 +1,18 @@
 import React from "react";
 
 const PrevButton = (props) => {
-  const { searchClass, activeClass, titleButton, setHidePrevButton } = props;
+  const {
+    searchClass,
+    activeClass,
+    titleButton,
+    setHidePrevButton,
+    setBtnName,
+  } = props;
   return (
     <button
       className="prevButton"
       onClick={(e) => {
+        setBtnName("Продолжить");
         e.preventDefault();
         const arrClasses = document.querySelectorAll(`.${searchClass}`);
         let indexActiveClass = 0;

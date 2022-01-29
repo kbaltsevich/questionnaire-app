@@ -7,6 +7,10 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: all 0.5s ease-in;
+  transition: all 0.2s ease-in;
   font-family: "DINPro", Arial, sans-serif;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
 }

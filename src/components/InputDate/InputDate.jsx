@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import style from "./Input.module.css";
 
-const Input = (props) => {
+const InputDate = (props) => {
   const {
     getState,
     setState,
@@ -11,7 +10,6 @@ const Input = (props) => {
     isDate,
     onlyText,
     wide,
-    isNoMinWidth,
   } = props;
   const [typeState, setTypeState] = useState(typeInput);
 
@@ -25,16 +23,10 @@ const Input = (props) => {
         autocomplete="off"
         className={
           notForValidation
-            ? ["forInput", "not-for-validation"].join(" ")
-            : "forInput"
+            ? ["forDate", "not-for-validation"].join(" ")
+            : "forDate"
         }
-        style={
-          wide
-            ? { width: 100 + "%" }
-            : isNoMinWidth
-            ? { minWidth: "auto" }
-            : null
-        }
+        style={wide ? { width: 100 + "%" } : null}
         type={typeState ? typeState : "text"}
         name={stateName}
         id={stateName}
@@ -94,4 +86,4 @@ const Input = (props) => {
   );
 };
 
-export default Input;
+export default InputDate;

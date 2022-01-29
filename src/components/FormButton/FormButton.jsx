@@ -4,14 +4,12 @@ import style from "./FormButton.module.css";
 const FormButton = (props) => {
   const {
     searchClass,
-    firstTitle,
-    lastTitle,
+    btnName,
+    setBtnName,
     getAllState,
     activeClass,
     setHidePrevButton,
   } = props;
-
-  const [titleButton, setTitleButton] = useState(firstTitle);
 
   let arrInputs = [];
 
@@ -39,7 +37,14 @@ const FormButton = (props) => {
     arrInputsNamesInSelects.forEach((item) => {
       const inputName = document.querySelectorAll(`input[name="${item}"]`);
       if (inputName.length > 1) {
-        if (inputName[0].getAttribute("type") === "radio") {
+        if (inputName[0].getAttribute("type") === "checkbox") {
+          if (
+            document.querySelectorAll(`input[name='${item}']:checked`)
+              .length === 0
+          ) {
+            arrNoValidInputs.push(item);
+          }
+        } else if (inputName[0].getAttribute("type") === "radio") {
           if (
             document.querySelectorAll(`input[name='${item}']:checked`)
               .length === 0
@@ -59,7 +64,7 @@ const FormButton = (props) => {
     if (arrNoValidInputs.length > 0) {
       arrNoValidInputs.forEach((item) => {
         if (document.querySelectorAll(`input[name='${item}']`).length > 1) {
-          document.querySelector(`.App`).scrollIntoView({
+          document.querySelector(`body`).scrollIntoView({
             inline: "start",
             behavior: "smooth",
           });
@@ -163,12 +168,12 @@ const FormButton = (props) => {
     indexActiveClass++;
     arrClasses.forEach((item) => item.classList.remove(activeClass));
     arrClasses[indexActiveClass].classList.add(activeClass);
-    document.querySelector(".App").scrollIntoView({
+    document.querySelector("body").scrollIntoView({
       inline: "start",
       behavior: "smooth",
     });
     if (indexActiveClass === lengthArrClasses - 1) {
-      setTitleButton(lastTitle);
+      setBtnName("Закончить опрос");
     }
   }
 
@@ -180,7 +185,7 @@ const FormButton = (props) => {
         return moveActiveClass(searchClass, activeClass);
       }}
     >
-      {titleButton}
+      {btnName}
     </button>
   );
 };

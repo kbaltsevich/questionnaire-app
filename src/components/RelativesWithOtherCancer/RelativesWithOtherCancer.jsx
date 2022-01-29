@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Radio from "../Radio/Radio";
 import Input from "../Input/Input";
+import RemoveButton from "../removeButton/RemoveButton";
 
 const RelativesWithOtherCancer = (props) => {
-  const { getState, setState, getCounter } = props;
+  const { getState, setState, getCounter, index, removeSection } = props;
   const [getNameRelativesWithOtherCancer, setNameRelativesWithOtherCancer] =
     useState({
       title: "Имя родственника",
@@ -15,7 +16,7 @@ const RelativesWithOtherCancer = (props) => {
     useState({
       title: "Степень родства",
       description: "",
-      placeholder: "мать, сестра, дочь, тетя, племянница, бабушка",
+      placeholder: "Мама, сестра, дочь, тетя, племянница, бабушка",
       value: "",
     });
 
@@ -42,6 +43,14 @@ const RelativesWithOtherCancer = (props) => {
     });
   return (
     <div className="withRelatives">
+      {index > 0 ? (
+        <div className="container">
+          <hr className="line" />
+          <p className="description" style={{ paddingTop: 20 + "px" }}>
+            (Если родственник добавлен ошибочно, ниже будет кнопка для удаления)
+          </p>
+        </div>
+      ) : null}
       <Input
         getState={getNameRelativesWithOtherCancer}
         setState={(item) => {
@@ -51,7 +60,8 @@ const RelativesWithOtherCancer = (props) => {
             getNameRelativesWithOtherCancer: item,
           });
         }}
-        stateName={`${getNameRelativesWithOtherCancer.title}_${getCounter}`}
+        stateName={`${getNameRelativesWithOtherCancer.title}_${getCounter}(Семейный анамнез по другим онкологическим заболеваниям)`}
+        wide={true}
       />
       <Input
         getState={getDegreeRelativesWithOtherCancer}
@@ -62,7 +72,11 @@ const RelativesWithOtherCancer = (props) => {
             getDegreeRelativesWithOtherCancer: item,
           });
         }}
-        stateName={getDegreeRelativesWithOtherCancer.title + `_${getCounter}`}
+        stateName={
+          getDegreeRelativesWithOtherCancer.title +
+          `_${getCounter}(Семейный анамнез по другим онкологическим заболеваниям)`
+        }
+        wide={true}
       />
       <Radio
         getState={isRelativesWithOtherFoM}
@@ -73,7 +87,10 @@ const RelativesWithOtherCancer = (props) => {
             isRelativesWithOtherFoM: item,
           });
         }}
-        stateName={isRelativesWithOtherFoM.title + `_${getCounter}`}
+        stateName={
+          isRelativesWithOtherFoM.title +
+          `_${getCounter}(Семейный анамнез по другим онкологическим заболеваниям)`
+        }
       />
       <Input
         getState={getRelativesDiagnosissOrOrgan}
@@ -84,7 +101,11 @@ const RelativesWithOtherCancer = (props) => {
             getRelativesDiagnosissOrOrgan: item,
           });
         }}
-        stateName={getRelativesDiagnosissOrOrgan.title + `_${getCounter}`}
+        stateName={
+          getRelativesDiagnosissOrOrgan.title +
+          `_${getCounter}(Семейный анамнез по другим онкологическим заболеваниям)`
+        }
+        wide={true}
       />
       <Input
         getState={getAgeRelativesWithOtherCancer}
@@ -95,9 +116,19 @@ const RelativesWithOtherCancer = (props) => {
             getAgeRelativesWithOtherCancer: item,
           });
         }}
-        stateName={getAgeRelativesWithOtherCancer.title + `_${getCounter}`}
+        stateName={
+          getAgeRelativesWithOtherCancer.title +
+          `_${getCounter}(Семейный анамнез по другим онкологическим заболеваниям)`
+        }
         typeInput="number"
       />
+      {index > 0 ? (
+        <RemoveButton
+          id={getState}
+          remove={removeSection}
+          titleButton="Удалить члена семьи"
+        />
+      ) : null}
     </div>
   );
 };

@@ -6,9 +6,10 @@ import Radio from "./components/Radio/Radio";
 import RelativesWithBreastCancer from "./components/RelativesWithBreastCancer/RelativesWithBreastCancer";
 import RelativesWithOtherCancer from "./components/RelativesWithOtherCancer/RelativesWithOtherCancer";
 import AddButton from "./components/addButton/AddButton";
-import Select from "./components/Select/Select";
 import PrevButton from "./components/prevButton/PrevButton";
+import CheckBokses from "./components/CheckBokses/ChekBokses";
 function App() {
+  const [buttonName, setButtonName] = useState("Продолжить");
   const [gender, setGender] = useState({
     title: "Ваш пол",
     description: "",
@@ -32,6 +33,11 @@ function App() {
     description: "",
     placeholder: "28.06.1998",
     minValue: "1900-01-01",
+    maxValue: `${new Date().getFullYear()}-${
+      new Date().getMonth() + 1 < 10
+        ? `0${new Date().getMonth() + 1}`
+        : new Date().getMonth() + 1
+    }-${new Date().getDate()}`,
     value: "",
   });
   const [getWeight, setWeight] = useState({
@@ -61,12 +67,14 @@ function App() {
     title: "Возраст начала менструации, лет",
     description: "",
     placeholder: "15",
+    minValue: 10,
+    maxValue: 60,
     value: "",
   });
   const [getNumberPregants, setNumberPregants] = useState({
-    title: "Число беременностей",
-    description: "(Введите 0, если беременностей не было)",
-    placeholder: "2",
+    title: "Были ли у вас беременности?",
+    description: "",
+    buttons: ["Да", "Нет"],
     value: "",
   });
   const [getAgeFirstchildbirth, setAgeFirstchildbirth] = useState({
@@ -93,6 +101,7 @@ function App() {
       title:
         "Общая продолжительность использования гормональных контрацептивов, дней",
       description: "",
+      minValue: 1,
       placeholder: "24",
       value: "",
     });
@@ -104,15 +113,16 @@ function App() {
     value: "",
   });
   const [getNameCancerDiagnosis, setNameCancerDiagnosis] = useState({
-    title: "Название Вашего диагноза",
+    title: "Название диагноза",
     description: "",
     placeholder: "Рак толстой кишки",
     value: "",
   });
   const [getAgeCancerDiagnosis, setAgeCancerDiagnosis] = useState({
-    title: "Возраст постановки Вашего диагноза, лет",
+    title: "Возраст постановки диагноза, лет",
     description: "",
     placeholder: "15",
+    minValue: 1,
     value: "",
   });
 
@@ -139,7 +149,7 @@ function App() {
   const [isConcomitantDiagnosis, setConcomitantDiagnosis] = useState({
     title: "Есть ли у вас сопутствующий диагноз?",
     description:
-      "(Прочие хронические и онкологические заболевания, отличающиеся того, что вы указали выше)",
+      "(Прочие хронические и онкологические заболевания, отличающиеся от того, что вы указали выше)",
     buttons: ["Да", "Нет"],
     value: "",
   });
@@ -200,7 +210,7 @@ function App() {
   const [getPreventiveSurgery, setPreventiveSurgerySelect] = useState({
     title: "Что было сделано?",
     description: "(Удаление молочных желез, яичников с трубами)",
-    options: [
+    checks: [
       "Удаление молочных желез",
       "Удаление яичника",
       "Удаление части кишечника",
@@ -219,7 +229,8 @@ function App() {
   const [getColonPolypsResult, setColonPolypsResult] = useState({
     title: "Сколько их было обнаружено?",
     description: "",
-    placeholder: "3",
+    placeholder: "1",
+    minValue: 1,
     value: "",
   });
 
@@ -288,6 +299,7 @@ function App() {
           setState={setDataBirthday}
           stateName={dataBirthday.title}
           isDate={true}
+          isNoMinWidth={true}
         />
         <Input
           getState={getWeight}
@@ -323,13 +335,12 @@ function App() {
             stateName={getAgeStartMenstruation.title}
             typeInput="number"
           />
-          <Input
+          <Radio
             getState={getNumberPregants}
             setState={setNumberPregants}
             stateName={getNumberPregants.title}
-            typeInput="number"
           />
-          {getNumberPregants.value !== "" && +getNumberPregants.value !== 0 ? (
+          {getNumberPregants.value === "Да" ? (
             <div>
               <Input
                 getState={getAgeFirstchildbirth}
@@ -342,6 +353,7 @@ function App() {
                 setState={setLactation}
                 stateName={getLactation.title}
                 typeInput="number"
+                notForValidation={true}
               />
             </div>
           ) : null}
@@ -372,12 +384,13 @@ function App() {
             <Input
               getState={getNameCancerDiagnosis}
               setState={setNameCancerDiagnosis}
-              stateName={getNameCancerDiagnosis.title}
+              stateName={`${getNameCancerDiagnosis.title}(Амнез)`}
+              wide={true}
             />
             <Input
               getState={getAgeCancerDiagnosis}
               setState={setAgeCancerDiagnosis}
-              stateName={getAgeCancerDiagnosis.title}
+              stateName={`${getAgeCancerDiagnosis.title}(Амнез)`}
               typeInput="number"
             />
             <Radio
@@ -407,6 +420,7 @@ function App() {
             getState={getConcomitantDiagnosis}
             setState={setConcomitantDiagnosisInput}
             stateName={getConcomitantDiagnosis.title}
+            wide={true}
           />
         ) : null}
         <Radio
@@ -419,6 +433,7 @@ function App() {
             getState={getGeneticTestingResult}
             setState={setGeneticTestingResult}
             stateName={getGeneticTestingResult.title}
+            wide={true}
           />
         ) : null}
         <Radio
@@ -437,6 +452,7 @@ function App() {
               getState={getBiopsyOrganAndResult}
               setState={setBiopsyOrganAndResult}
               stateName={getBiopsyOrganAndResult.title}
+              wide={true}
             />
             <Radio
               getState={isBiopsyHyperplasia}
@@ -451,7 +467,7 @@ function App() {
           stateName={isPreventiveSurgery.title}
         />
         {isPreventiveSurgery.value === "Да" ? (
-          <Select
+          <CheckBokses
             getState={getPreventiveSurgery}
             setState={setPreventiveSurgerySelect}
             stateName={getPreventiveSurgery.title}
@@ -475,8 +491,8 @@ function App() {
         <h2>Семейный анамнез по раку молочной железы</h2>
         <p>
           Отметьте имя каждого человека в вашей семье, у которого был выявлен
-          рак молочной железы. Если их было несколько, то в конце опроса можно
-          будет добавить другого члена семьи
+          рак молочной железы. Если их было несколько, то чуть ниже можно будет
+          добавить другого члена семьи
         </p>
         <Radio
           getState={isRelativesWithBreastCancer}
@@ -488,6 +504,7 @@ function App() {
             {getRelativesWithBreastCancer.map((item, index) => {
               return (
                 <RelativesWithBreastCancer
+                  index={index}
                   key={item.id}
                   getState={item}
                   getCounter={item.id}
@@ -498,6 +515,11 @@ function App() {
                       )
                     )
                   }
+                  removeSection={(id) => {
+                    setRelativesWithBreastCancer(
+                      getRelativesWithBreastCancer.filter((el) => el !== id)
+                    );
+                  }}
                 />
               );
             })}
@@ -533,9 +555,15 @@ function App() {
             {getRelativesWithOtherCancer.map((item, index) => {
               return (
                 <RelativesWithOtherCancer
+                  index={index}
                   getCounter={index}
                   key={item.id}
                   getState={item}
+                  removeSection={(id) => {
+                    setRelativesWithOtherCancer(
+                      getRelativesWithOtherCancer.filter((el) => el !== id)
+                    );
+                  }}
                   setState={(value) =>
                     setRelativesWithOtherCancer(
                       getRelativesWithOtherCancer.map((item) =>
@@ -564,28 +592,20 @@ function App() {
       <div className="end">
         <span>Спасибо за тест!</span>
       </div>
-      {/* {document
-        .querySelectorAll(".section")[0]
-        .classList.contains("activeSection") ? null : (
-        <PrevButton
-          searchClass="section"
-          activeClass="activeSection"
-          titleButton="Назад"
-        />
-      )} */}
       {hidePrevButton ? null : (
         <PrevButton
           searchClass="section"
           activeClass="activeSection"
           titleButton="Назад"
           setHidePrevButton={setHidePrevButton}
+          setBtnName={setButtonName}
         />
       )}
       <FormButton
         searchClass="section"
         activeClass="activeSection"
-        firstTitle="Продолжить"
-        lastTitle="Закончить опрос"
+        btnName={buttonName}
+        setBtnName={setButtonName}
         setHidePrevButton={setHidePrevButton}
         getAllState
       />

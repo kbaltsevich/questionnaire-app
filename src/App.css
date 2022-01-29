@@ -10,13 +10,17 @@
   height: 100%;
   text-align: center;
   background-color: #0179cf;
-  transition: all 0.5s ease-in;
+  transition: all 0.2s ease-in;
   font-family: "DINPro", Arial, sans-serif;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
 }
 
 .section {
   display: none;
-  transition: all 0.5s ease-in;
+  transition: all 0.2s ease-in;
   text-align: center;
   max-width: 1160px;
   margin: 0 auto;
@@ -87,7 +91,7 @@
 }
 .end {
   display: none;
-  transition: all 0.5s ease-in;
+  transition: all 0.2s ease-in;
   text-align: center;
   max-width: 1160px;
   margin: 0 auto;
@@ -128,11 +132,9 @@
   border-radius: 100px;
   padding: 10px 15px;
   border: 1px solid #ffffff;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
   font-size: 18px;
   line-height: 28px;
   color: #000000;
-  transition: all 0.3s ease;
   font-family: "DINPro", Arial, sans-serif;
 }
 .forOption:hover {
@@ -145,7 +147,17 @@
   padding: 20px 0;
   text-align: center;
   font-family: "DINPro", Arial, sans-serif;
+  transition: none !important;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
 }
+
+.container:last-child {
+  padding: 20px 0 30px;
+}
+
 .title {
   display: block;
   font-style: normal;
@@ -158,8 +170,13 @@
 }
 
 .buttons_container {
-  margin: 30px auto;
+  transition: none !important;
+  margin: 40px auto 30px;
   font-family: "DINPro", Arial, sans-serif;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
 }
 
 .description {
@@ -187,13 +204,13 @@
   height: 70px;
   text-align: center;
   background: #f5f5f5;
+  border: 1px solid #f5f5f5;
   font-size: 22px;
   line-height: 28px;
   color: #000000;
   opacity: 0.4;
   padding: 19px 38px 23px;
   border-radius: 100px;
-  transition: all 0.3s ease;
   font-family: "DINPro", Arial, sans-serif;
 }
 
@@ -262,6 +279,10 @@
   font-family: "DINPro", Arial, sans-serif;
 }
 
+.addButton {
+  margin: 10px auto 30px !important;
+}
+
 .addButton:hover,
 .prevButton:hover {
   border: 1px solid rgba(255, 255, 255, 1);
@@ -277,7 +298,6 @@
   padding: 0;
   margin-top: 10px;
   border: 1px solid #ffffff;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
   font-size: 22px;
   font-weight: 400;
   line-height: 28px;
@@ -288,6 +308,32 @@
   -moz-transition: none;
   -ms-transition: none;
   -o-transition: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.forDate {
+  text-align: center;
+  height: 70px;
+  background: #ffffff;
+  border-radius: 100px;
+  padding: 0;
+  margin-top: 10px;
+  border: 1px solid #ffffff;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #000000;
+  font-family: "DINPro", Arial, sans-serif;
+  transition: none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .forInput[name="Как Вас зовут?"] {
@@ -321,4 +367,130 @@ input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  -ms-progress-appearance: none;
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  -webkit-align-items: center;
+  display: -webkit-inline-flex;
+  font-family: "DINPro", Arial, sans-serif;
+  overflow: hidden;
+  padding: 0 69px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  -webkit-padding-end: 69px;
+  -webkit-padding-start: 69px;
+  /* -webkit-padding-start: 1px; */
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  text-align: center;
+  display: inline-block;
+  white-space: pre;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  border: 1px solid #ffffff;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.checksContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.checksLabel {
+  padding: 10px;
+  padding: 10px;
+  margin: 0 0 33px;
+}
+
+.checksLabel:first-child {
+  margin: 20px 0 33px;
+}
+
+.checksLabel:last-child {
+  margin: 0 0 20px;
+}
+
+.checksSpan {
+  height: 70px;
+  text-align: center;
+  background: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  font-size: 22px;
+  line-height: 28px;
+  color: #000000;
+  opacity: 0.4;
+  padding: 19px 38px 23px;
+  border-radius: 100px;
+  font-family: "DINPro", Arial, sans-serif;
+}
+
+.checksSpan:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.forChecks {
+  display: none;
+  font-family: "DINPro", Arial, sans-serif;
+}
+
+.forChecks:checked + span {
+  background: #f5f5f5 !important;
+  opacity: 1;
+}
+
+.line {
+  border: none;
+  border-top: 1px solid #ffffff;
+  color: #ffffff;
+  height: 0;
+}
+
+.removeButton {
+  background-color: #fa8e92;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+  border-radius: 100px;
+  width: 367px;
+  height: 60px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 35px;
+  text-align: center;
+  color: #ffffff;
+  transition: all 0.3s ease-in;
+  margin: 40px auto 10px;
+  font-family: "DINPro", Arial, sans-serif;
+}
+
+.removeButton:hover {
+  background-color: #ff7479;
+  cursor: pointer;
+}
+
+.withRelatives ~ .withRelatives {
+  padding: 30px 0 0 !important;
 }

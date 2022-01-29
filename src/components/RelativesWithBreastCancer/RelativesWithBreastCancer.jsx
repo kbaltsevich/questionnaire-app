@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Radio from "../Radio/Radio";
 import Input from "../Input/Input";
+import RemoveButton from "../removeButton/RemoveButton";
 
 const RelativesWithBreastCancer = (props) => {
-  const { getState, setState, getCounter } = props;
+  const { getState, setState, getCounter, index, removeSection } = props;
   const [getNameRelativesWithBreastCancer, setNameRelativesWithBreastCancer] =
     useState({
       title: "Имя родственника ",
@@ -17,12 +18,12 @@ const RelativesWithBreastCancer = (props) => {
   ] = useState({
     title: "Степень родства ",
     description: "",
-    placeholder: "мать, сестра, дочь, тетя, племянница, бабушка",
+    placeholder: "Мама, сестра, дочь, тетя, племянница, бабушка",
     value: "",
   });
 
   const [isRelativesFoM, setRelativesFoM] = useState({
-    title: "По какой линии относится Вам Ваш родственник? ",
+    title: "По какой линии относится родственник? ",
     description: "",
     buttons: ["Отцовская", "Материнская"],
     value: "",
@@ -51,6 +52,14 @@ const RelativesWithBreastCancer = (props) => {
   });
   return (
     <div className="withRelatives">
+      {index > 0 ? (
+        <div className="container">
+          <hr className="line" />
+          <p className="description" style={{ paddingTop: 20 + "px" }}>
+            (Если родственник добавлен ошибочно, ниже будет кнопка для удаления)
+          </p>
+        </div>
+      ) : null}
       <Input
         getState={getNameRelativesWithBreastCancer}
         setState={(item) => {
@@ -60,7 +69,8 @@ const RelativesWithBreastCancer = (props) => {
             getNameRelativesWithBreastCancer: item,
           });
         }}
-        stateName={`${getNameRelativesWithBreastCancer.title}_${getCounter}`}
+        stateName={`${getNameRelativesWithBreastCancer.title}_${getCounter}(Семейный анамнез по раку молочной железы)`}
+        wide={true}
       />
       <Input
         getState={getDegreeRelativesWithBreastCancer}
@@ -71,7 +81,8 @@ const RelativesWithBreastCancer = (props) => {
             getDegreeRelativesWithBreastCancer: item,
           });
         }}
-        stateName={`${getDegreeRelativesWithBreastCancer.title}_${getCounter}`}
+        stateName={`${getDegreeRelativesWithBreastCancer.title}_${getCounter}(Семейный анамнез по раку молочной железы)`}
+        wide={true}
       />
       <Radio
         getState={isRelativesFoM}
@@ -82,7 +93,10 @@ const RelativesWithBreastCancer = (props) => {
             isRelativesFoM: item,
           });
         }}
-        stateName={isRelativesFoM.title + `_${getCounter}`}
+        stateName={
+          isRelativesFoM.title +
+          `_${getCounter}(Семейный анамнез по раку молочной железы)`
+        }
       />
       <Input
         getState={getAgeRelativesWithBreastCancer}
@@ -93,7 +107,7 @@ const RelativesWithBreastCancer = (props) => {
             getAgeRelativesWithBreastCancer: item,
           });
         }}
-        stateName={`${getAgeRelativesWithBreastCancer.title}_${getCounter}`}
+        stateName={`${getAgeRelativesWithBreastCancer.title}_${getCounter}(Семейный анамнез по раку молочной железы)`}
         typeInput="number"
       />
       <Radio
@@ -105,7 +119,7 @@ const RelativesWithBreastCancer = (props) => {
             isTripleNegativeSubtypeCancer: item,
           });
         }}
-        stateName={`${isTripleNegativeSubtypeCancer.title}_${getCounter}`}
+        stateName={`${isTripleNegativeSubtypeCancer.title}_${getCounter}(Семейный анамнез по раку молочной железы)`}
       />
       <Radio
         getState={isBilateralProcess}
@@ -116,8 +130,15 @@ const RelativesWithBreastCancer = (props) => {
             isBilateralProcess: item,
           });
         }}
-        stateName={`${isBilateralProcess.title}_${getCounter}`}
+        stateName={`${isBilateralProcess.title}_${getCounter}(Семейный анамнез по раку молочной железы)`}
       />
+      {index > 0 ? (
+        <RemoveButton
+          id={getState}
+          remove={removeSection}
+          titleButton="Удалить члена семьи"
+        />
+      ) : null}
     </div>
   );
 };
